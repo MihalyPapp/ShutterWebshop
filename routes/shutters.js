@@ -3,7 +3,8 @@ const router = express.Router();
 const shutterService = require('../services/shutterService');
 
 router.get('/', (req, res) => {
-    res.status(200).render('index',{title: 'Shutter Webshop'})
+    req.url = '/list';
+    router.handle(req, res);
 });
 
 router.get('/list', (req, res) => {

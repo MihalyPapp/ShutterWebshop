@@ -1,19 +1,22 @@
 {
-    "name:": "Shutter 01",
+    "name": "Shutter 01",
+    "price": 5999,
     "partNo": "R-ma-6000/f",
     "slats": [
-      "white, green, blue"
+      "white", "green", "blue"
     ]
 }
 {
-  "name:": "Shutter 02",
+  "name": "Shutter 02",
+  "price": 5499,
   "partNo": "R-ma-6001/f",
   "slats": [
     "chocolate", "wooden", "white"
   ]
 }
 {
-  "name:": "Shutter 03",
+  "name": "Shutter 03",
+  "price": 6299,
   "partNo": "R-ma-6002/f",
   "slats": [
     "chocolate", "wooden", "white"
@@ -21,7 +24,8 @@
 }
 
 {
-  "name:": "Shutter 04",
+  "name": "Shutter 04",
+  "price": 5590,
   "partNo": "R-ma-6003/f",
   "slats": [
     "chocolate", "wooden", "white"
@@ -29,7 +33,8 @@
 }
 
 {
-  "name:": "Shutter 05",
+  "name": "Shutter 05",
+  "price": 4999,
   "partNo": "R-ma-6004/f",
   "slats": [
     "chocolate", "wooden", "white"
