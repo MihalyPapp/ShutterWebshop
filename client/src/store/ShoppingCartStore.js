@@ -3,6 +3,7 @@ import {EventEmitter} from 'events';
 class ShoppingCartStore extends EventEmitter {
 
     _cartItems = [];
+    _cartPrice = 0;
 
     emitChange() {
         this.emit('change');

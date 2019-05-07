@@ -47,27 +47,27 @@ dispatcher.register((data) => {
     if(data.payload.actionType !== ShoppingCartConstants.ADD_TO_SHOPPING_CART) {
         return;
     }
-
-    let cartItemIndex = ShoppingCartStore._cartItems.findIndex(cartItem => {
-        console.log("cartitem")
-        console.log(cartItem)
-        console.log("payload")
-        console.log(data.payload.payload)
-       return JSON.stringify(cartItem.shutter) === JSON.stringify(data.payload.payload.shutter) &&
-           JSON.stringify(cartItem.parameters) === JSON.stringify(data.payload.payload.parameters);
+    //console.log("bejovo")
+    //console.log(data.payload.payload)
+    const itemIndex = ShoppingCartStore._cartItems.findIndex(element => {
+        //console.log("storebalevo")
+        //console.log(element)
+        return (
+            JSON.stringify(data.payload.payload.shutter) === JSON.stringify(element.shutter) &&
+            JSON.stringify(data.payload.payload.parameters) === JSON.stringify(element.parameters)
+        );
     });
-    console.log(cartItemIndex);
-
-    if(cartItemIndex === -1) {
-        console.log("nem talált")
-        const merged = {...data.payload.payload, ...{quantity: 1}};
-        ShoppingCartStore._cartItems.push(merged);
-        console.log(merged)
+    const cartItem = {...data.payload.payload, ...{quantity: 1}, ...{price: data.payload.payload.shutter.price}};
+    if(itemIndex === -1) {
+        //console.log("más")
+        ShoppingCartStore._cartItems.push(cartItem);
     } else {
-        console.log("talált")
-        ShoppingCartStore._cartItems[cartItemIndex].quantity += 1;
-        console.log(ShoppingCartStore._cartItems[cartItemIndex])
+        //console.log("egyforma")
+        ShoppingCartStore._cartItems[itemIndex].quantity += 1;
+        ShoppingCartStore._cartItems[itemIndex].price += data.payload.payload.shutter.price;
     }
+    ShoppingCartStore._cartPrice += data.payload.payload.shutter.price;
+    //console.log(ShoppingCartStore._cartItems)
     ShoppingCartStore.emitChange();
 });
 

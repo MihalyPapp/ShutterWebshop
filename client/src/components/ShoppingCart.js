@@ -6,12 +6,16 @@ class ShoppingCart extends React.Component {
         super(props);
         this._onChange = this._onChange.bind(this);
         this.state = {
-            shoppingCart: []
+            shoppingCart: ShoppingCartStore._cartItems,
+            cartPrice: ShoppingCartStore._cartPrice
         }
     }
 
     _onChange() {
-        this.setState({shoppingCart: ShoppingCartStore._cartItems});
+        this.setState({
+            shoppingCart: ShoppingCartStore._cartItems,
+            cartPrice: ShoppingCartStore._cartPrice
+        });
     }
 
     componentDidMount() {
@@ -48,7 +52,7 @@ class ShoppingCart extends React.Component {
                                             <span className="badge badge-primary badge-pill">{cartItem.quantity} pieces</span>
                                         </div>
                                         <div className="col-6 text-right">
-                                            <b>{cartItem.shutter.price} Ft</b>
+                                            <b>{cartItem.price} Ft</b>
                                         </div>
                                     </div>
                                 </li>
@@ -62,7 +66,7 @@ class ShoppingCart extends React.Component {
                             Total price:
                         </div>
                         <div className="col-6 text-right">
-                            <b>totalPrice Ft</b>
+                            <b>{this.state.cartPrice} HUF</b>
                         </div>
                     </div>
                 </div>

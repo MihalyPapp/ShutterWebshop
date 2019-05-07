@@ -1,15 +1,17 @@
 import React from 'react';
-import ShutterStore from "../store/ShutterStore";
-import {Link} from "react-router-dom";
-import ShoppingCartActions from "../actions/ShoppingCartActions";
-import ShoppingCart from "./ShoppingCart";
+import ShutterStore from '../store/ShutterStore';
+import {Link} from 'react-router-dom';
+import ShoppingCart from './ShoppingCart';
+import ShoppingCartActions from '../actions/ShoppingCartActions'
 
 class ShutterDetails extends React.Component {
     constructor(props) {
         super(props);
-        this._onChange = this._onChange.bind(this);
         this.state = {
-            selectedShutter: ShutterStore._selectedShutter
+            selectedShutter: ShutterStore._selectedShutter,
+            width: "",
+            height: "",
+            slat: ""
         }
     }
 
@@ -18,21 +20,14 @@ class ShutterDetails extends React.Component {
     }
 
     componentDidMount() {
-        ShutterStore.addChangeListener(this._onChange)
+        ShutterStore.addChangeListener(this._onChange);
     }
 
     componentWillUnmount() {
-        ShutterStore.removeChangeListener(this._onChange)
+        ShutterStore.removeChangeListener(this._onChange);
     }
 
-    formValues = {
-        width: 0,
-        height: 0,
-        slat: ""
-    };
-
     render() {
-        console.log(this.state.selectedShutter);
         return(
             <div className="row" style={{marginTop: '15px'}}>
                 <div className="col-lg-8 col-auto" style={{marginBottom: '15px'}}>
@@ -60,7 +55,7 @@ class ShutterDetails extends React.Component {
                                 <div className="input-group col-sm-10">
                                     <input
                                         onChange={(event) => {
-                                            this.formValues.width = event.target.value;
+                                            this.setState({width: event.target.value});
                                         }}
                                         type="text"
                                         className="form-control"
@@ -76,7 +71,7 @@ class ShutterDetails extends React.Component {
                                 <div className="input-group col-sm-10">
                                     <input
                                         onChange={(event) => {
-                                            this.formValues.height = event.target.value;
+                                            this.setState({height: event.target.value})
                                         }}
                                         className="form-control"
                                         placeholder="test"
@@ -89,7 +84,7 @@ class ShutterDetails extends React.Component {
                             <div className="form-group row">
                                 <label className="col-sm-2 col-form-label">Slat:</label>
                                 <div className="input-group col-sm-10">
-                                    <select onChange={event => this.formValues.slat=event.target.value} className="custom-select">
+                                    <select onChange={event => this.setState({slat: event.target.value})} className="custom-select">
                                         <option defaultValue={null} label=""/>
                                         {this.state.selectedShutter.slats.map(slat => {
                                             return <option key={slat} value={slat}>{slat}</option>
@@ -121,7 +116,11 @@ class ShutterDetails extends React.Component {
     _onClick = () => {
         const cartItem = {
             shutter: this.state.selectedShutter,
-            parameters: this.formValues
+            parameters: {
+                width: this.state.width,
+                height: this.state.height,
+                slat: this.state.slat
+            }
         };
         console.log("item componenstol")
         console.log(cartItem)
