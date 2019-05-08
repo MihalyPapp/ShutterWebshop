@@ -13,6 +13,7 @@ class OrderDAO {
                 console.log(err);
                 callback([]);
             }
+
             const db = client.db(ShutterWebshopConstants.dbName);
             const orders = db.collection(ShutterWebshopConstants.collections.orders.collectionName);
 
@@ -23,6 +24,28 @@ class OrderDAO {
             });
 
         })
+    }
+
+    findOrderByUsername(_username, callback) {
+        const client = MongoClient(url);
+        client.connect((err) => {
+            if(err != null) {
+                console.log(err);
+                callback([])
+            }
+
+            const db = client.db(ShutterWebshopConstants.dbName);
+            const orders = db.collection(ShutterWebshopConstants.collections.orders.collectionName);
+
+            const infos = ShutterWebshopConstants.collections.orders.infos.objectName;
+            const username = ShutterWebshopConstants.collections.orders.infos.username;
+
+            orders.find({[infos+'.'+username]: _username}).toArray((err, docs) => {
+                assert.equal(err, null);
+                callback(docs);
+                console.log(docs);
+            })
+        });
     }
 }
 

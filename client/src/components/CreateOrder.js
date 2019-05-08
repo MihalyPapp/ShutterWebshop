@@ -78,11 +78,11 @@ class CreateOrder extends React.Component {
         }
         switch (this.state.sentOrderResponse.ok) {
             case 1:
-                return <div className="alert alert-success"><strong>Success!</strong> The order has been sent!</div>
+                return <div className="alert alert-success"><strong>Success!</strong> The order has been recorded!</div>;
             case 0:
-                return <div className="alert alert-danger"><strong>Error!</strong> Something wrong.</div>
+                return <div className="alert alert-danger"><strong>Error!</strong> Something wrong.</div>;
             case undefined:
-                return <div className="spinner-border"><span className="sr-only">Loading..</span></div>
+                return <div className="spinner-border"><span className="sr-only">Loading..</span></div>;
             default:
                 return <div/>
         }

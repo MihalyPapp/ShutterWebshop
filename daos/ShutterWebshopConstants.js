@@ -4,24 +4,25 @@ module.exports = {
         shutters: {
             collectionName: 'shutters',
             _id: '_id',
-            name: 'Name',
-            partNo: 'Part number',
-            slats: 'Slats'
+            name: 'name',
+            partNo: 'partNo',
+            slats: 'slats'
         },
         orders: {
             collectionName: 'orders',
-            _id: 'Object Id',
-            cartItems: 'Cart Items',
+            _id: '_id',
+            cartItems: 'cartItems',
             infos: {
-                username: 'Username',
-                email: 'Email',
-                address: 'Address',
-                city: 'City',
-                State: 'State',
-                Zip: 'Zip Code'
+                objectName: 'infos',
+                username: 'username',
+                email: 'email',
+                address: 'address',
+                city: 'city',
+                State: 'state',
+                Zip: 'zip'
             },
-            status: 'Status',
-            date: 'Date'
+            date: 'date',
+            status: 'status'
         }
     }
 };

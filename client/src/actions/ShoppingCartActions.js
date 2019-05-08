@@ -8,6 +8,7 @@ class ShoppingCartActions {
             payload: cartItem
         });
     }
+
     removeFromShoppingCart(cartItem) {
         ShutterWebshopDispatcher.handleViewAction({
             actionType: ShoppingCartConstants.REMOVE_FROM_SHOPPING_CART,

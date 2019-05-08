@@ -26,8 +26,8 @@ dispatcher.register((data) => {
 
     fetch('/shutters/list')
         .then(response => {return response.json()})
-        .then(result => {
-            ShutterStore._shutters = result;
+        .then(response => {
+            ShutterStore._shutters = response;
             ShutterStore.emitChange();
         })
 });
@@ -39,8 +39,8 @@ dispatcher.register((data) => {
 
     fetch(`/shutters/${data.payload.payload}`)
         .then(response => {return response.json()})
-        .then(result => {
-            ShutterStore._selectedShutter = result[0];
+        .then(response => {
+            ShutterStore._selectedShutter = response[0];
             ShutterStore.emitChange();
         });
 });
@@ -55,8 +55,8 @@ dispatcher.register((data) => {
             JSON.stringify(data.payload.payload.parameters) === JSON.stringify(element.parameters)
         );
     });
-    const cartItem = {...data.payload.payload, ...{quantity: 1}, ...{price: data.payload.payload.shutter.price}};
     if(itemIndex === -1) {
+        const cartItem = {...data.payload.payload, ...{quantity: 1}, ...{price: data.payload.payload.shutter.price}};
         ShoppingCartStore._cartItems.push(cartItem);
     } else {
         ShoppingCartStore._cartItems[itemIndex].quantity += 1;
@@ -105,6 +105,18 @@ dispatcher.register((data) => {
             ShoppingCartStore._cartPrice = 0;
             ShoppingCartStore.emitChange();
         });
+});
+
+dispatcher.register((data) => {
+   if(data.payload.actionType !== OrderConstants.FETCH_ORDERS_BY_USERNAME) {
+       return;
+   }
+   fetch(`/orders/user/${data.payload.payload}`)
+       .then(response => {return response.json()})
+       .then(response => {
+           OrderStore._ordersByUsername = response;
+           OrderStore.emitChange();
+       })
 });
 
 export default dispatcher;

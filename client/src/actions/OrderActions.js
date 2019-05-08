@@ -8,6 +8,13 @@ class OrderActions {
             payload: order
         });
     }
+
+    fetchOrdersByUsername(username) {
+        ShutterWebshopDispatcher.handleViewAction({
+            actionType: OrderConstants.FETCH_ORDERS_BY_USERNAME,
+            payload: username
+        })
+    }
 }
 
 export default new OrderActions();

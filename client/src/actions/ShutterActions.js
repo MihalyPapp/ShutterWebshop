@@ -8,6 +8,7 @@ class ShutterActions {
             payload: null
         });
     }
+
     fetchSelectedShutter(_id) {
         ShutterWebshopDispatcher.handleViewAction({
             actionType: ShutterConstants.FETCH_SELECTED_SHUTTER,

@@ -8,4 +8,11 @@ router.post('/add', (req, res) => {
     });
 });
 
+router.get('/user/:username', (req, res) => {
+    orderService.findOrderByUsername(req.params.username, response => {
+       res.status(200).send(response);
+    });
+    console.log(req.params.username);
+});
+
 module.exports = router;
