@@ -9,7 +9,7 @@ module.exports = {
             slats: 'Slats'
         },
         orders: {
-            collectionName: 'Orders',
+            collectionName: 'orders',
             _id: 'Object Id',
             cartItems: 'Cart Items',
             infos: {

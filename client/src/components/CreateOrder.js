@@ -1,13 +1,17 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
+
 import ShoppingCart from './ShoppingCart'
 import ShoppingCartStore from '../store/ShoppingCartStore';
-import OrderActions from "../actions/OrderActions";
+
+import OrderActions from '../actions/OrderActions'
+import OrderStore from '../store/OrderStore';
 
 class CreateOrder extends React.Component {
     constructor(props) {
         super(props);
-        this._onCartChange = this._onCartChange.bind(this);
+        this.onCartChange = this.onCartChange.bind(this);
+        this.onOrderChange = this.onOrderChange.bind(this);
         this.state = {
             cartItems: ShoppingCartStore._cartItems,
             username: "",
@@ -16,21 +20,27 @@ class CreateOrder extends React.Component {
             city: "",
             state: "",
             zip: "",
+            orderSent: 0, //1 or 0
+            sentOrderResponse: OrderStore._sentOrderResponse
         };
     }
 
-    _onCartChange() {
-        this.setState({
-            cartItems: ShoppingCartStore._cartItems,
-        });
+    onCartChange() {
+        this.setState({cartItems: ShoppingCartStore._cartItems});
+    }
+
+    onOrderChange() {
+        this.setState({sentOrderResponse: OrderStore._sentOrderResponse});
     }
 
     componentDidMount() {
-        ShoppingCartStore.addChangeListener(this._onCartChange);
+        ShoppingCartStore.addChangeListener(this.onCartChange);
+        OrderStore.addChangeListener(this.onOrderChange);
     }
 
     componentWillUnmount() {
-        ShoppingCartStore.removeChangeListener(this._onCartChange)
+        ShoppingCartStore.removeChangeListener(this.onCartChange);
+        OrderStore.removeChangeListener(this.onOrderChange);
     }
 
     onSendBtnClick = () => {
@@ -46,6 +56,8 @@ class CreateOrder extends React.Component {
             }
         };
         OrderActions.sendOrder(orderItem);
+        this.setState({orderSent: 1});
+        this.renderResponseMsg();
     };
 
     renderSendOrderBtn() {
@@ -60,7 +72,25 @@ class CreateOrder extends React.Component {
         }
     }
 
+    renderResponseMsg() {
+        if(this.state.orderSent === 0) {
+            return <div/>
+        }
+        switch (this.state.sentOrderResponse.ok) {
+            case 1:
+                return <div className="alert alert-success"><strong>Success!</strong> The order has been sent!</div>
+            case 0:
+                return <div className="alert alert-danger"><strong>Error!</strong> Something wrong.</div>
+            case undefined:
+                return <div className="spinner-border"><span className="sr-only">Loading..</span></div>
+            default:
+                return <div/>
+        }
+    }
+
     render() {
+        console.log(this.state.orderSent)
+        console.log(this.state.sentOrderResponse)
         return(
             <div>
                 <div className="row" style={{marginTop: '15px'}}>
@@ -70,38 +100,30 @@ class CreateOrder extends React.Component {
                         </h4>
                         <div className="form-row">
                             <div className="form-group col-md-6">
-                                <div>
-                                    <div className="form-group">
-                                        <label>Username</label>
-                                        <input
-                                            onChange={event => this.setState({username: event.target.value})}
-                                            className="form-control" placeholder="Username" autoComplete="off"
-                                        />
-                                    </div>
+                                <div className="form-group">
+                                    <label>Username</label>
+                                    <input
+                                        onChange={event => this.setState({username: event.target.value})}
+                                        className="form-control" placeholder="Username" autoComplete="off"
+                                    />
                                 </div>
                             </div>
                             <div className="form-group col-md-6">
-                                <div>
-                                    <div className="form-group">
-                                        <label>Email</label>
-                                        <input
-                                            onChange={event => this.setState({email: event.target.value})}
-                                            className="form-control" placeholder="Email" autoComplete="off"
-                                        />
-                                    </div>
+                                <div className="form-group">
+                                    <label>Email</label>
+                                    <input
+                                        onChange={event => this.setState({email: event.target.value})}
+                                        className="form-control" placeholder="Email" autoComplete="off"
+                                    />
                                 </div>
                             </div>
                         </div>
                         <div className="form-group">
-                            <div>
-                                <div className="form-group">
-                                    <label>Address</label>
-                                    <input
-                                        onChange={event => this.setState({address: event.target.value})}
-                                        className="form-control" placeholder="1234 Main St" autoComplete="off"
-                                    />
-                                </div>
-                            </div>
+                            <label>Address</label>
+                            <input
+                                onChange={event => this.setState({address: event.target.value})}
+                                className="form-control" placeholder="1234 Main St" autoComplete="off"
+                            />
                         </div>
                         <div className="form-row">
                             <div className="form-group col-md-6">
@@ -138,7 +160,7 @@ class CreateOrder extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="row">
+                        <div className="form-group">
                             <div className="col-auto">
                                 {this.renderSendOrderBtn()}
                                 <Link to="/">
@@ -146,6 +168,7 @@ class CreateOrder extends React.Component {
                                 </Link>
                             </div>
                         </div>
+                            {this.state.orderSent === 1 ? this.renderResponseMsg() : ""}
                     </div>
                     <div className="col-lg-4 col-auto w-100">
                         <ShoppingCart/>

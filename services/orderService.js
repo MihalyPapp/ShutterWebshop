@@ -4,7 +4,6 @@ function OrderService() {
 
 OrderService.prototype.insertCustomerOrder = function(order, callback) {
     order['date'] = new Date().toString();
-
     this.orderDAO.insertCustomerOrder(order, callback);
 };
 

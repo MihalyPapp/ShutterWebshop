@@ -4,9 +4,9 @@ import ShutterConstants from '../constants/ShutterConstants';
 import ShoppingCartConstants from '../constants/ShoppingCartConstants';
 import OrderConstants from '../constants/OrderConstants';
 
-
 import ShutterStore from '../store/ShutterStore';
 import ShoppingCartStore from "../store/ShoppingCartStore";
+import OrderStore from "../store/OrderStore";
 
 class ShutterWebshopDispatcher extends Dispatcher {
     handleViewAction(action) {
@@ -108,7 +108,15 @@ dispatcher.register((data) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data.payload.payload)
-    });
+    }).then(response => response.json())
+        .then(response => {
+            OrderStore._sentOrderResponse = response;
+            OrderStore.emitChange();
+            ShoppingCartStore._cartItems = [];
+            ShoppingCartStore._cartPrice = 0;
+            ShoppingCartStore.emitChange();
+            console.log("hali")
+        });
 });
 
 export default dispatcher;

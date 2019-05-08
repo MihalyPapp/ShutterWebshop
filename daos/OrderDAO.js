@@ -1,5 +1,4 @@
 const MongoClient = require('mongodb').MongoClient;
-const {ObjectId} = require('mongodb');
 const assert = require('assert');
 const ShutterWebshopConstants = require('./ShutterWebshopConstants');
 
