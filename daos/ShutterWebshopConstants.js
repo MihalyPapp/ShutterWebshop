@@ -3,10 +3,25 @@ module.exports = {
     collections: {
         shutters: {
             collectionName: 'shutters',
-            id: "_id",
-            name: "Name",
-            partNo: "Part number",
-            slats: "Slats"
+            _id: '_id',
+            name: 'Name',
+            partNo: 'Part number',
+            slats: 'Slats'
+        },
+        orders: {
+            collectionName: 'Orders',
+            _id: 'Object Id',
+            cartItems: 'Cart Items',
+            infos: {
+                username: 'Username',
+                email: 'Email',
+                address: 'Address',
+                city: 'City',
+                State: 'State',
+                Zip: 'Zip Code'
+            },
+            status: 'Status',
+            date: 'Date'
         }
     }
 };

@@ -18,10 +18,10 @@ class ShutterDAO {
             const shutters = db.collection(ShutterWebshopConstants.collections.shutters.collectionName);
 
             shutters.find().toArray((err, docs) => {
-                assert.equal(null, err);
+                assert.equal(err, null);
                 callback(docs);
-            })
-        })
+            });
+        });
     }
 
     readShuttersById(_id, callback) {
@@ -33,12 +33,11 @@ class ShutterDAO {
             }
             const db = client.db(ShutterWebshopConstants.dbName);
             const shutters = db.collection(ShutterWebshopConstants.collections.shutters.collectionName);
-            console.log(_id)
             shutters.find({_id: _id}).toArray((err, docs) => {
-                assert.equal(null, err);
+                assert.equal(err, null);
                 callback(docs);
-            })
-        })
+            });
+        });
     }
 }
 

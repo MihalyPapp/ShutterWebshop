@@ -21,7 +21,7 @@ router.get('/:_id', (req, res) => {
 
 router.get('/', (req, res) => {
     req.url = '/list';
-    router.handle(req, res);ú
+    router.handle(req, res);
 });
 
 module.exports = router;

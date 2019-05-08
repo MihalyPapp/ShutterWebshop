@@ -1,0 +1,9 @@
+{
+  "_id": "1",
+  "name": "Shutter 01",
+  "price": 5999,
+  "partNo": "R-ma-6000/f",
+  "slats": [
+    "white", "green", "blue"
+  ]
+}

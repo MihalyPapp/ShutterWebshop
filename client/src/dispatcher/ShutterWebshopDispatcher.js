@@ -2,6 +2,8 @@ import {Dispatcher} from 'flux';
 
 import ShutterConstants from '../constants/ShutterConstants';
 import ShoppingCartConstants from '../constants/ShoppingCartConstants';
+import OrderConstants from '../constants/OrderConstants';
+
 
 import ShutterStore from '../store/ShutterStore';
 import ShoppingCartStore from "../store/ShoppingCartStore";
@@ -94,6 +96,19 @@ dispatcher.register((data) => {
     }
     ShoppingCartStore._cartPrice -= data.payload.payload.shutter.price;
     ShoppingCartStore.emitChange();
+});
+
+dispatcher.register((data) => {
+    if(data.payload.actionType !== OrderConstants.SEND_ORDER) {
+        return;
+    }
+    fetch('/orders/add', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data.payload.payload)
+    });
 });
 
 export default dispatcher;

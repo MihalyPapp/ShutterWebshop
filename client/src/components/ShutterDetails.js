@@ -45,7 +45,7 @@ class ShutterDetails extends React.Component {
         ShoppingCartStore.removeChangeListener(this._onCartChange)
     }
 
-    _onClick = () => {
+    onAddBtnClick = () => {
         const cartItem = {
             shutter: this.state.selectedShutter,
             parameters: {
@@ -102,10 +102,8 @@ class ShutterDetails extends React.Component {
                                         onChange={(event) => {
                                             this.setState({width: event.target.value});
                                         }}
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="test"
-                                        autoComplete="off"/>
+                                        type="text" className="form-control" placeholder="test" autoComplete="off"
+                                    />
                                     <div className="input-group-append">
                                         <span className="input-group-text">cm</span>
                                     </div>
@@ -118,9 +116,8 @@ class ShutterDetails extends React.Component {
                                         onChange={(event) => {
                                             this.setState({height: event.target.value})
                                         }}
-                                        className="form-control"
-                                        placeholder="test"
-                                        autoComplete="off"/>
+                                        className="form-control" placeholder="test" autoComplete="off"
+                                    />
                                     <div className="input-group-append">
                                         <span className="input-group-text">cm</span>
                                     </div>
@@ -140,7 +137,7 @@ class ShutterDetails extends React.Component {
                             <div className="row">
                                 <div className="col-auto">
                                     <button
-                                        onClick={() => this._onClick()}
+                                        onClick={() => this.onAddBtnClick()}
                                         className="btn btn-primary float-none">Add to cart
                                     </button>
                                     <Link to="/">

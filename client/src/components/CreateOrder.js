@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 import ShoppingCart from './ShoppingCart'
 import ShoppingCartStore from '../store/ShoppingCartStore';
+import OrderActions from "../actions/OrderActions";
 
 class CreateOrder extends React.Component {
     constructor(props) {
@@ -32,9 +33,28 @@ class CreateOrder extends React.Component {
         ShoppingCartStore.removeChangeListener(this._onCartChange)
     }
 
+    onSendBtnClick = () => {
+        const orderItem = {
+            cartItems: this.state.cartItems,
+            infos: {
+                username: this.state.username,
+                email: this.state.email,
+                address: this.state.address,
+                city: this.state.city,
+                state: this.state.state,
+                zip: this.state.zip,
+            }
+        };
+        OrderActions.sendOrder(orderItem);
+    };
+
     renderSendOrderBtn() {
         if(this.state.cartItems.length > 0) {
-            return <button className="btn btn-success float-none">Send order</button>
+            return (
+                <button
+                    onClick={() => this.onSendBtnClick()}
+                    className="btn btn-success float-none">Send order</button>
+            );
         } else {
             return <button className="btn btn-success float-none" disabled>Send order</button>
         }
@@ -53,7 +73,10 @@ class CreateOrder extends React.Component {
                                 <div>
                                     <div className="form-group">
                                         <label>Username</label>
-                                        <input className="form-control" name="username" placeholder="Username" autoComplete="off"/>
+                                        <input
+                                            onChange={event => this.setState({username: event.target.value})}
+                                            className="form-control" placeholder="Username" autoComplete="off"
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +84,10 @@ class CreateOrder extends React.Component {
                                 <div>
                                     <div className="form-group">
                                         <label>Email</label>
-                                        <input className="form-control" name="email" placeholder="Email" autoComplete="off"/>
+                                        <input
+                                            onChange={event => this.setState({email: event.target.value})}
+                                            className="form-control" placeholder="Email" autoComplete="off"
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +96,10 @@ class CreateOrder extends React.Component {
                             <div>
                                 <div className="form-group">
                                     <label>Address</label>
-                                    <input className="form-control" name="address" placeholder="1234 Main St" autoComplete="off"/>
+                                    <input
+                                        onChange={event => this.setState({address: event.target.value})}
+                                        className="form-control" placeholder="1234 Main St" autoComplete="off"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -79,7 +108,10 @@ class CreateOrder extends React.Component {
                                 <div>
                                     <div className="form-group">
                                         <label>City</label>
-                                        <input className="form-control" name="city" placeholder="San Francisco" autoComplete="off"/>
+                                        <input
+                                            onChange={event => this.setState({city: event.target.value})}
+                                            className="form-control" placeholder="San Francisco" autoComplete="off"
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +119,10 @@ class CreateOrder extends React.Component {
                                 <div>
                                     <div className="form-group">
                                         <label>State</label>
-                                        <input className="form-control" name="state" placeholder="California" autoComplete="off"/>
+                                        <input
+                                            onChange={event => this.setState({state: event.target.value})}
+                                            className="form-control" name="state" placeholder="California" autoComplete="off"
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +130,10 @@ class CreateOrder extends React.Component {
                                 <div>
                                     <div className="form-group">
                                         <label>Zip</label>
-                                        <input className="form-control" name="zip" placeholder="99999" autoComplete="off"/>
+                                        <input
+                                            onChange={event => this.setState({zip: event.target.value})}
+                                            className="form-control" name="zip" placeholder="99999" autoComplete="off"
+                                        />
                                     </div>
                                 </div>
                             </div>

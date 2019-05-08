@@ -5,6 +5,7 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const shutterRouter = require('./routes/shutters');
+const ordersRouter = require('./routes/orders');
 
 const app = express();
 
@@ -16,5 +17,6 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use('/', indexRouter);
 app.use('/shutters', shutterRouter);
+app.use('/orders', ordersRouter);
 
 module.exports = app;
