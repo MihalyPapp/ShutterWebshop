@@ -89,8 +89,6 @@ class CreateOrder extends React.Component {
     }
 
     render() {
-        console.log(this.state.orderSent)
-        console.log(this.state.sentOrderResponse)
         return(
             <div>
                 <div className="row" style={{marginTop: '15px'}}>

@@ -115,7 +115,6 @@ dispatcher.register((data) => {
             ShoppingCartStore._cartItems = [];
             ShoppingCartStore._cartPrice = 0;
             ShoppingCartStore.emitChange();
-            console.log("hali")
         });
 });
 
