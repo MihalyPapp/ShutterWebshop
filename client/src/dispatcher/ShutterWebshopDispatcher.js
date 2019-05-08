@@ -1,5 +1,4 @@
 import {Dispatcher} from 'flux';
-import React from 'react';
 
 import ShutterConstants from '../constants/ShutterConstants';
 import ShoppingCartConstants from '../constants/ShoppingCartConstants';

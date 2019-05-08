@@ -23,7 +23,7 @@ class Navbar extends React.Component {
                                 </div>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <Link to="/" className="dropdown-item" >Shop</Link>
-                                    <div className="dropdown-item" >Create order</div>
+                                    <Link to="/createOrder" className="dropdown-item" >Create order</Link>
                                     <div className="dropdown-divider"/>
                                     <div className="dropdown-item" >View Own Orders</div>
                                 </div>

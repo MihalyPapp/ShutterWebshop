@@ -7,14 +7,14 @@ class ShoppingCart extends React.Component {
         super(props);
         this._onChange = this._onChange.bind(this);
         this.state = {
-            shoppingCart: ShoppingCartStore._cartItems,
+            cartItems: ShoppingCartStore._cartItems,
             cartPrice: ShoppingCartStore._cartPrice
         }
     }
 
     _onChange() {
         this.setState({
-            shoppingCart: ShoppingCartStore._cartItems,
+            cartItems: ShoppingCartStore._cartItems,
             cartPrice: ShoppingCartStore._cartPrice
         });
     }
@@ -35,7 +35,7 @@ class ShoppingCart extends React.Component {
                 </div>
                 <div className="card-body">
                     <ul className="list-group list-group-flush">
-                        {this.state.shoppingCart.map((cartItem) => {
+                        {this.state.cartItems.map((cartItem) => {
                             return (
                                 <li onClick={() => ShoppingCartActions.removeFromShoppingCart(cartItem)} key={JSON.stringify(cartItem)} className="list-group-item list-group-item-action" style={{cursor: 'pointer'}}>
                                     <div>{cartItem.shutter.name}</div>

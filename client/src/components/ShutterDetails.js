@@ -4,13 +4,16 @@ import {Link} from 'react-router-dom';
 import ShoppingCart from './ShoppingCart';
 import ShoppingCartActions from '../actions/ShoppingCartActions'
 import ShutterActions from '../actions/ShutterActions';
+import ShoppingCartStore from "../store/ShoppingCartStore";
 
 class ShutterDetails extends React.Component {
     constructor(props) {
         super(props);
         this._onChange = this._onChange.bind(this);
+        this._onCartChange = this._onCartChange.bind(this);
         this.state = {
             selectedShutter: ShutterStore._selectedShutter,
+            shoppingCart: ShoppingCartStore._cartItems,
             width: "",
             height: "",
             slat: ""
@@ -21,16 +24,50 @@ class ShutterDetails extends React.Component {
     }
 
     _onChange() {
-        this.setState({selectedShutter: ShutterStore._selectedShutter});
+        this.setState({
+            selectedShutter: ShutterStore._selectedShutter,
+        });
+    }
+
+    _onCartChange() {
+        this.setState({
+            shoppingCart: ShoppingCartStore._cartItems
+        });
     }
 
     componentDidMount() {
         ShutterStore.addChangeListener(this._onChange);
+        ShoppingCartStore.addChangeListener(this._onCartChange);
     }
 
     componentWillUnmount() {
         ShutterStore.removeChangeListener(this._onChange);
+        ShoppingCartStore.removeChangeListener(this._onCartChange)
     }
+
+    _onClick = () => {
+        const cartItem = {
+            shutter: this.state.selectedShutter,
+            parameters: {
+                width: this.state.width,
+                height: this.state.height,
+                slat: this.state.slat
+            }
+        };
+        ShoppingCartActions.addToShoppingCart(cartItem);
+    };
+
+    renderCreateOrderBtn() {
+        if(this.state.shoppingCart.length > 0) {
+            return (
+                <div className="col">
+                    <Link to="/createOrder">
+                        <button type="button" className="btn btn-success float-right">Create order</button>
+                    </Link>
+                </div>
+            )
+        }
+    };
 
     render() {
         if(this.state.selectedShutter === null)
@@ -110,6 +147,7 @@ class ShutterDetails extends React.Component {
                                         <button type="button" className="btn btn-light float-none">Go to shop</button>
                                     </Link>
                                 </div>
+                                {this.renderCreateOrderBtn()}
                             </div>
                         </div>
                     </div>
@@ -119,18 +157,6 @@ class ShutterDetails extends React.Component {
                 </div>
             </div>
         );
-    }
-
-    _onClick = () => {
-        const cartItem = {
-            shutter: this.state.selectedShutter,
-            parameters: {
-                width: this.state.width,
-                height: this.state.height,
-                slat: this.state.slat
-            }
-        };
-        ShoppingCartActions.addToShoppingCart(cartItem);
     }
 }
 
