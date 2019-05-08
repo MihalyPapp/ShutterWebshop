@@ -33,7 +33,7 @@ dispatcher.register((data) => {
 });
 
 dispatcher.register((data) => {
-    if(data.payload.actionType !== ShutterConstants.SELECTED_SHUTTER_FETCH_BY_ID) {
+    if(data.payload.actionType !== ShutterConstants.FETCH_SELECTED_SHUTTER) {
         return;
     }
 
@@ -42,18 +42,7 @@ dispatcher.register((data) => {
         .then(result => {
             ShutterStore._selectedShutter = result[0];
             ShutterStore.emitChange();
-        })
-});
-
-dispatcher.register((data) => {
-    if(data.payload.actionType !== ShutterConstants.SELECTED_SHUTTER) {
-        return;
-    }
-
-    ShutterStore._selectedShutter = ShutterStore._shutters.find(shutter => {
-        return shutter._id === data.payload.payload._id;
-    });
-    ShutterStore.emitChange();
+        });
 });
 
 dispatcher.register((data) => {

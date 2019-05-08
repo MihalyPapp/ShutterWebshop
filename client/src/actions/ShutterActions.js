@@ -8,15 +8,9 @@ class ShutterActions {
             payload: null
         });
     }
-    setSelectedShutter(shutter) {
+    fetchSelectedShutter(_id) {
         ShutterWebshopDispatcher.handleViewAction({
-            actionType: ShutterConstants.SELECTED_SHUTTER,
-            payload: shutter
-        });
-    }
-    setSelectedShutterByFetch(_id) {
-        ShutterWebshopDispatcher.handleViewAction({
-            actionType: ShutterConstants.SELECTED_SHUTTER_FETCH_BY_ID,
+            actionType: ShutterConstants.FETCH_SELECTED_SHUTTER,
             payload: _id
         });
     }

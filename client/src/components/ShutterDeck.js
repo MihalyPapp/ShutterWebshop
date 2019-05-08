@@ -8,7 +8,9 @@ class ShutterDeck extends React.Component {
         super(props);
         ShutterActions.fetchShutters();
         this._onChange = this._onChange.bind(this);
-        this.state = {shutters: ShutterStore._shutters};
+        this.state = {
+            shutters: ShutterStore._shutters
+        };
     }
 
     _onChange() {
