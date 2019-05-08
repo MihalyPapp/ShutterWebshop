@@ -1,5 +1,6 @@
 import React from 'react';
-import ShoppingCartStore from "../store/ShoppingCartStore";
+import ShoppingCartStore from '../store/ShoppingCartStore';
+import ShoppingCartActions from '../actions/ShoppingCartActions';
 
 class ShoppingCart extends React.Component {
     constructor(props) {
@@ -26,7 +27,6 @@ class ShoppingCart extends React.Component {
         ShoppingCartStore.removeChangeListener(this._onChange);
     }
 
-
     render() {
         return (
             <div className="card h-100">
@@ -37,7 +37,7 @@ class ShoppingCart extends React.Component {
                     <ul className="list-group list-group-flush">
                         {this.state.shoppingCart.map((cartItem) => {
                             return (
-                                <li onClick={() => this.onClick(cartItem)} key={JSON.stringify(cartItem)} className="list-group-item list-group-item-action" style={{cursor: 'pointer'}}>
+                                <li onClick={() => ShoppingCartActions.removeFromShoppingCart(cartItem)} key={JSON.stringify(cartItem)} className="list-group-item list-group-item-action" style={{cursor: 'pointer'}}>
                                     <div>{cartItem.shutter.name}</div>
                                     <div className="text-muted">
                                         <ul>

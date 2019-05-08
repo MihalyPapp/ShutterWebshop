@@ -76,4 +76,25 @@ dispatcher.register((data) => {
     ShoppingCartStore.emitChange();
 });
 
+dispatcher.register((data) => {
+    if(data.payload.actionType !== ShoppingCartConstants.REMOVE_FROM_SHOPPING_CART) {
+        return;
+    }
+    const itemIndex = ShoppingCartStore._cartItems.findIndex(element => {
+        return (
+            JSON.stringify(data.payload.payload.shutter) === JSON.stringify(element.shutter) &&
+            JSON.stringify(data.payload.payload.parameters) === JSON.stringify(element.parameters)
+        );
+    });
+
+    if(ShoppingCartStore._cartItems[itemIndex].quantity > 1) {
+        ShoppingCartStore._cartItems[itemIndex].quantity -= 1;
+        ShoppingCartStore._cartItems[itemIndex].price -= data.payload.payload.shutter.price;
+    } else {
+        ShoppingCartStore._cartItems.splice(itemIndex, 1);
+    }
+    ShoppingCartStore._cartPrice -= data.payload.payload.shutter.price;
+    ShoppingCartStore.emitChange();
+});
+
 export default dispatcher;
