@@ -23,10 +23,23 @@ dispatcher.register((data) => {
         return;
     }
 
-    fetch('/shutters')
+    fetch('/shutters/list')
         .then(response => {return response.json()})
         .then(result => {
             ShutterStore._shutters = result;
+            ShutterStore.emitChange();
+        })
+});
+
+dispatcher.register((data) => {
+    if(data.payload.actionType !== ShutterConstants.SELECTED_SHUTTER_FETCH_BY_ID) {
+        return;
+    }
+
+    fetch(`/shutters/${data.payload.payload}`)
+        .then(response => {return response.json()})
+        .then(result => {
+            ShutterStore._selectedShutter = result[0];
             ShutterStore.emitChange();
         })
 });
@@ -39,7 +52,6 @@ dispatcher.register((data) => {
     ShutterStore._selectedShutter = ShutterStore._shutters.find(shutter => {
         return shutter._id === data.payload.payload._id;
     });
-
     ShutterStore.emitChange();
 });
 
@@ -47,11 +59,7 @@ dispatcher.register((data) => {
     if(data.payload.actionType !== ShoppingCartConstants.ADD_TO_SHOPPING_CART) {
         return;
     }
-    //console.log("bejovo")
-    //console.log(data.payload.payload)
     const itemIndex = ShoppingCartStore._cartItems.findIndex(element => {
-        //console.log("storebalevo")
-        //console.log(element)
         return (
             JSON.stringify(data.payload.payload.shutter) === JSON.stringify(element.shutter) &&
             JSON.stringify(data.payload.payload.parameters) === JSON.stringify(element.parameters)
@@ -59,15 +67,12 @@ dispatcher.register((data) => {
     });
     const cartItem = {...data.payload.payload, ...{quantity: 1}, ...{price: data.payload.payload.shutter.price}};
     if(itemIndex === -1) {
-        //console.log("más")
         ShoppingCartStore._cartItems.push(cartItem);
     } else {
-        //console.log("egyforma")
         ShoppingCartStore._cartItems[itemIndex].quantity += 1;
         ShoppingCartStore._cartItems[itemIndex].price += data.payload.payload.shutter.price;
     }
     ShoppingCartStore._cartPrice += data.payload.payload.shutter.price;
-    //console.log(ShoppingCartStore._cartItems)
     ShoppingCartStore.emitChange();
 });
 

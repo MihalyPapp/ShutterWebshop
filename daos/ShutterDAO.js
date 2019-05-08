@@ -1,4 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
+const {ObjectId} = require('mongodb');
 const assert = require('assert');
 const ShutterWebshopConstants = require('./ShutterWebshopConstants');
 
@@ -23,6 +24,22 @@ class ShutterDAO {
         })
     }
 
+    readShuttersById(_id, callback) {
+        const client = MongoClient(url);
+        client.connect((err) => {
+            if(err != null) {
+                console.log(err);
+                callback([]);
+            }
+            const db = client.db(ShutterWebshopConstants.dbName);
+            const shutters = db.collection(ShutterWebshopConstants.collections.shutters.collectionName);
+            console.log(_id)
+            shutters.find({_id: _id}).toArray((err, docs) => {
+                assert.equal(null, err);
+                callback(docs);
+            })
+        })
+    }
 }
 
 module.exports = new ShutterDAO;

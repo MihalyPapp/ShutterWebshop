@@ -3,15 +3,20 @@ import ShutterStore from '../store/ShutterStore';
 import {Link} from 'react-router-dom';
 import ShoppingCart from './ShoppingCart';
 import ShoppingCartActions from '../actions/ShoppingCartActions'
+import ShutterActions from '../actions/ShutterActions';
 
 class ShutterDetails extends React.Component {
     constructor(props) {
         super(props);
+        this._onChange = this._onChange.bind(this);
         this.state = {
             selectedShutter: ShutterStore._selectedShutter,
             width: "",
             height: "",
             slat: ""
+        };
+        if(this.state.selectedShutter === null) {
+            ShutterActions.setSelectedShutterByFetch(this.props.match.params.id);
         }
     }
 
@@ -28,6 +33,9 @@ class ShutterDetails extends React.Component {
     }
 
     render() {
+        if(this.state.selectedShutter === null)
+            return <div/>;
+
         return(
             <div className="row" style={{marginTop: '15px'}}>
                 <div className="col-lg-8 col-auto" style={{marginBottom: '15px'}}>
@@ -122,8 +130,6 @@ class ShutterDetails extends React.Component {
                 slat: this.state.slat
             }
         };
-        console.log("item componenstol")
-        console.log(cartItem)
         ShoppingCartActions.addToShoppingCart(cartItem);
     }
 }

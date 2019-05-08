@@ -22,7 +22,7 @@ class Navbar extends React.Component {
                                     Customer
                                 </div>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <div className="dropdown-item" >Shop</div>
+                                    <Link to="/" className="dropdown-item" >Shop</Link>
                                     <div className="dropdown-item" >Create order</div>
                                     <div className="dropdown-divider"/>
                                     <div className="dropdown-item" >View Own Orders</div>

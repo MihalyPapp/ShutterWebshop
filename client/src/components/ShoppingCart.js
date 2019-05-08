@@ -28,7 +28,6 @@ class ShoppingCart extends React.Component {
 
 
     render() {
-        console.log(this.state.shoppingCart)
         return (
             <div className="card h-100">
                 <div className="card-header">

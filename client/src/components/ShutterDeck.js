@@ -24,7 +24,6 @@ class ShutterDeck extends React.Component {
     }
 
     renderCard() {
-        console.log(this.state.shutters);
         return (
             this.state.shutters.map(shutter => {
                 return <ShutterCard key={shutter._id} shutter={shutter}/>;
