@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import ShutterDeck from './components/ShutterDeck';
 import ShutterDetails from './components/ShutterDetails';
 import CreateOrder from './components/CreateOrder';
+import CustomerOrders from './components/CustomerOrders';
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
         <Route path="/" exact component={ShutterDeck}/>
         <Route path="/shutters" exact component={ShutterDeck}/>
         <Route path="/shutters/:id" exact component={ShutterDetails}/>
-        <Route path="/createOrder" exact component={CreateOrder}/>
+        <Route path="/customer/createOrder" exact component={CreateOrder}/>
+        <Route path="/customer/orders" exact component={CustomerOrders}/>
         </BrowserRouter>
     </div>
   );

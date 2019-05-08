@@ -61,7 +61,7 @@ class ShutterDetails extends React.Component {
         if(this.state.shoppingCart.length > 0) {
             return (
                 <div className="col">
-                    <Link to="/createOrder">
+                    <Link to="/customer/createOrder">
                         <button type="button" className="btn btn-success float-right">Create order</button>
                     </Link>
                 </div>

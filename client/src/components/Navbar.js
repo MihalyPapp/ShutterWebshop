@@ -17,15 +17,15 @@ class Navbar extends React.Component {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item dropdown">
-                                <div className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                                <Link to="/" className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Customer
-                                </div>
+                                </Link>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <Link to="/" className="dropdown-item" >Shop</Link>
-                                    <Link to="/createOrder" className="dropdown-item" >Create order</Link>
+                                    <Link to="/customer/createOrder" className="dropdown-item" >Create order</Link>
                                     <div className="dropdown-divider"/>
-                                    <div className="dropdown-item" >View Own Orders</div>
+                                    <Link to="/customer/orders" className="dropdown-item" >View Own Orders</Link>
                                 </div>
                             </li>
                             <li className="nav-item dropdown">

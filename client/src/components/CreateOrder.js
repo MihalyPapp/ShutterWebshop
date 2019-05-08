@@ -10,8 +10,8 @@ import OrderStore from '../store/OrderStore';
 class CreateOrder extends React.Component {
     constructor(props) {
         super(props);
-        this.onCartChange = this.onCartChange.bind(this);
-        this.onOrderChange = this.onOrderChange.bind(this);
+        this._onCartChange = this._onCartChange.bind(this);
+        this._onOrderChange = this._onOrderChange.bind(this);
         this.state = {
             cartItems: ShoppingCartStore._cartItems,
             username: "",
@@ -25,22 +25,22 @@ class CreateOrder extends React.Component {
         };
     }
 
-    onCartChange() {
+    _onCartChange() {
         this.setState({cartItems: ShoppingCartStore._cartItems});
     }
 
-    onOrderChange() {
+    _onOrderChange() {
         this.setState({sentOrderResponse: OrderStore._sentOrderResponse});
     }
 
     componentDidMount() {
-        ShoppingCartStore.addChangeListener(this.onCartChange);
-        OrderStore.addChangeListener(this.onOrderChange);
+        ShoppingCartStore.addChangeListener(this._onCartChange);
+        OrderStore.addChangeListener(this._onOrderChange);
     }
 
     componentWillUnmount() {
-        ShoppingCartStore.removeChangeListener(this.onCartChange);
-        OrderStore.removeChangeListener(this.onOrderChange);
+        ShoppingCartStore.removeChangeListener(this._onCartChange);
+        OrderStore.removeChangeListener(this._onOrderChange);
     }
 
     onSendBtnClick = () => {
