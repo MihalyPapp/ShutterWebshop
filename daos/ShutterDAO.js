@@ -18,7 +18,10 @@ class ShutterDAO {
             const db = client.db(ShutterWebshopConstants.dbName);
             const shutters = db.collection(ShutterWebshopConstants.collections.shutters.collectionName);
 
-            shutters.find().toArray((err, docs) => {
+            const shutterName = ShutterWebshopConstants.collections.shutters.name;
+            const shutterPrice = ShutterWebshopConstants.collections.shutters.price;
+
+            shutters.find().project({[shutterName]: 1, [shutterPrice]: 1}).toArray((err, docs) => {
                 assert.equal(err, null);
                 callback(docs);
             });
@@ -35,8 +38,9 @@ class ShutterDAO {
 
             const db = client.db(ShutterWebshopConstants.dbName);
             const shutters = db.collection(ShutterWebshopConstants.collections.shutters.collectionName);
+            const id = ShutterWebshopConstants.collections.shutters._id;
 
-            shutters.find({_id: _id}).toArray((err, docs) => {
+            shutters.find({[id]: _id}).toArray((err, docs) => {
                 assert.equal(err, null);
                 callback(docs);
             });

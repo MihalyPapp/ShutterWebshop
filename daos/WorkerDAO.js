@@ -18,8 +18,10 @@ class WorkerDAO {
             const orders = db.collection(ShutterWebshopConstants.collections.orders.collectionName);
 
             const status = ShutterWebshopConstants.collections.orders.status;
+            const username = ShutterWebshopConstants.collections.orders.username;
+            const date = ShutterWebshopConstants.collections.orders.date;
 
-            orders.find({[status] : 'WAITING_FOR_ASSEMBLE'}).toArray((err, docs) => {
+            orders.find({[status] : 'WAITING_FOR_ASSEMBLE'}).project({[username]: 1, [date]: 1}).toArray((err, docs) => {
                 assert.equal(err, null);
                 callback(docs);
             })

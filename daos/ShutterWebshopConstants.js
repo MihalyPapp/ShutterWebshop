@@ -6,7 +6,8 @@ module.exports = {
             _id: '_id',
             name: 'name',
             partNo: 'partNo',
-            slats: 'slats'
+            slats: 'slats',
+            price: 'price'
         },
         orders: {
             collectionName: 'orders',
@@ -14,13 +15,13 @@ module.exports = {
             cartItems: 'cartItems',
             infos: {
                 objectName: 'infos',
-                username: 'username',
                 email: 'email',
                 address: 'address',
                 city: 'city',
                 State: 'state',
                 Zip: 'zip'
             },
+            username: 'username',
             price: 'price',
             date: 'date',
             status: 'status'

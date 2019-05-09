@@ -26,7 +26,7 @@ class CustomerDAO {
         })
     }
 
-    findOrderByUsername(_username, callback) {
+    findOrderByUsername(username, callback) {
         const client = MongoClient(url);
         client.connect((err) => {
             if(err != null) {
@@ -36,9 +36,9 @@ class CustomerDAO {
 
             const db = client.db(ShutterWebshopConstants.dbName);
             const orders = db.collection(ShutterWebshopConstants.collections.orders.collectionName);
-            const username = ShutterWebshopConstants.collections.orders.infos.username;
+            const _username = ShutterWebshopConstants.collections.orders.username;
 
-            orders.find({[username]: _username}).toArray((err, docs) => {
+            orders.find({[_username]: username}).toArray((err, docs) => {
                 assert.equal(err, null);
                 callback(docs);
             })
