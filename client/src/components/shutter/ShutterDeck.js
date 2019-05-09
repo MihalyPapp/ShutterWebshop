@@ -1,7 +1,7 @@
 import React from 'react';
-import ShutterActions from "../actions/ShutterActions";
-import ShutterStore from "../store/ShutterStore";
-import ShutterCard from "./ShutterCard";
+import ShutterActions from '../../actions/ShutterActions';
+import ShutterStore from '../../store/ShutterStore';
+import ShutterCard from './ShutterCard';
 
 class ShutterDeck extends React.Component {
     constructor(props) {

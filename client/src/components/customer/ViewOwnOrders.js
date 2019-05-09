@@ -1,8 +1,8 @@
 import React from 'react';
-import CustomerActions from "../actions/CustomerActions";
-import CustomerStore from "../store/CustomerStore";
+import CustomerActions from '../../actions/CustomerActions';
+import CustomerStore from '../../store/CustomerStore';
 
-class CustomerOrders extends React.Component {
+class ViewOwnOrders extends React.Component {
     constructor(props) {
         super(props);
         this._onChange = this._onChange.bind(this);
@@ -107,4 +107,4 @@ class CustomerOrders extends React.Component {
     };
 }
 
-export default CustomerOrders;
+export default ViewOwnOrders;

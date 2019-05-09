@@ -19,7 +19,7 @@ class WorkerDAO {
 
             const status = ShutterWebshopConstants.collections.orders.status;
 
-            orders.find({[status] : 'WAITING_FOR_ASSEMBLY'}).toArray((err, docs) => {
+            orders.find({[status] : 'WAITING_FOR_ASSEMBLE'}).toArray((err, docs) => {
                 assert.equal(err, null);
                 callback(docs);
             })

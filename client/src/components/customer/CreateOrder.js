@@ -1,11 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 
-import ShoppingCart from './ShoppingCart'
-import ShoppingCartStore from '../store/ShoppingCartStore';
+import ShoppingCart from '../ShoppingCart'
+import ShoppingCartStore from '../../store/ShoppingCartStore';
 
-import OrderActions from '../actions/CustomerActions'
-import CustomerStore from '../store/CustomerStore';
+import OrderActions from '../../actions/CustomerActions'
+import CustomerStore from '../../store/CustomerStore';
 
 class CreateOrder extends React.Component {
     constructor(props) {
@@ -51,13 +51,13 @@ class CreateOrder extends React.Component {
         const orderItem = {
             cartItems: this.state.cartItems,
             infos: {
-                username: this.state.username,
                 email: this.state.email,
                 address: this.state.address,
                 city: this.state.city,
                 state: this.state.state,
                 zip: this.state.zip
             },
+            username: this.state.username,
             price: this.state.cartPrice
         };
         OrderActions.sendOrder(orderItem);

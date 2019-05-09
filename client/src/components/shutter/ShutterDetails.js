@@ -1,9 +1,9 @@
 import React from 'react';
-import ShutterStore from '../store/ShutterStore';
+import ShutterStore from '../../store/ShutterStore';
 import {Link} from 'react-router-dom';
-import ShoppingCart from './ShoppingCart';
-import ShoppingCartActions from '../actions/ShoppingCartActions'
-import ShoppingCartStore from "../store/ShoppingCartStore";
+import ShoppingCart from '../ShoppingCart';
+import ShoppingCartActions from '../../actions/ShoppingCartActions'
+import ShoppingCartStore from '../../store/ShoppingCartStore';
 
 class ShutterDetails extends React.Component {
     constructor(props) {

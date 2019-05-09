@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import ShutterActions from "../actions/ShutterActions";
+import ShutterActions from '../../actions/ShutterActions';
 
 const ShutterCard = ({shutter}) => {
     return (

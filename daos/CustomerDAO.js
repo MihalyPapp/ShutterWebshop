@@ -36,11 +36,9 @@ class CustomerDAO {
 
             const db = client.db(ShutterWebshopConstants.dbName);
             const orders = db.collection(ShutterWebshopConstants.collections.orders.collectionName);
-
-            const infos = ShutterWebshopConstants.collections.orders.infos.objectName;
             const username = ShutterWebshopConstants.collections.orders.infos.username;
 
-            orders.find({[infos+'.'+username]: _username}).toArray((err, docs) => {
+            orders.find({[username]: _username}).toArray((err, docs) => {
                 assert.equal(err, null);
                 callback(docs);
             })

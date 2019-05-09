@@ -28,13 +28,20 @@ class OrderPanel extends React.Component {
     render() {
         return (
             <div className="card">
-                <div className="card-header">Stores</div>
+                <div className="card-header">Orders what's waiting for assemble</div>
                 <div className="card-body">
                     <ul className="list-group">
                         {this.state.orders.map(order => {
                             return(
                                 <li className="list-group-item" key={order._id}>
-                                    <small>{order.date}</small>
+                                    <div className="col-auto">
+                                        <div className="row text-info">
+                                            <small>{order.date}</small>
+                                        </div>
+                                        <div className="row">
+                                            Username: {order.username}
+                                        </div>
+                                    </div>
                                 </li>
                             );
                         })}
