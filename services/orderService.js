@@ -4,7 +4,7 @@ function OrderService() {
 
 OrderService.prototype.insertCustomerOrder = function(order, callback) {
     order['date'] = new Date().toString();
-    order['status']  = 'ON_PROGRESS';
+    order['status']  = 'IN_PROGRESS';
     this.orderDAO.insertCustomerOrder(order, callback);
 };
 

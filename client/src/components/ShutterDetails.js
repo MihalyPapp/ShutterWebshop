@@ -84,7 +84,7 @@ class ShutterDetails extends React.Component {
                                     <h3>{this.state.selectedShutter.name}</h3>
                                     <p className="blockquote-footer text-right">Part number: {this.state.selectedShutter.partNo}</p>
                                     <h6 className="align-text-bottom text-danger">
-                                        <label>Price: {this.state.selectedShutter.price} Ft</label>
+                                        <label>Price: <strong>{this.state.selectedShutter.price} HUF</strong></label> / sqm
                                     </h6>
                                 </div>
                             </div>
@@ -100,7 +100,7 @@ class ShutterDetails extends React.Component {
                                         onChange={(event) => {
                                             this.setState({width: event.target.value});
                                         }}
-                                        type="text" className="form-control" placeholder="test" autoComplete="off"
+                                        type="number" className="form-control" placeholder="width" autoComplete="off"
                                     />
                                     <div className="input-group-append">
                                         <span className="input-group-text">cm</span>
@@ -114,7 +114,7 @@ class ShutterDetails extends React.Component {
                                         onChange={(event) => {
                                             this.setState({height: event.target.value})
                                         }}
-                                        className="form-control" placeholder="test" autoComplete="off"
+                                        type="number" className="form-control" placeholder="height" autoComplete="off"
                                     />
                                     <div className="input-group-append">
                                         <span className="input-group-text">cm</span>

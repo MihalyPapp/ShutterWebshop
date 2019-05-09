@@ -41,8 +41,8 @@ class ShoppingCart extends React.Component {
                                     <div>{cartItem.shutter.name}</div>
                                     <div className="text-muted">
                                         <ul>
-                                            <li>Width: {cartItem.parameters.width}</li>
-                                            <li>Height: {cartItem.parameters.height}</li>
+                                            <li>Width: {cartItem.parameters.width} cm</li>
+                                            <li>Height: {cartItem.parameters.height} cm</li>
                                             <li>Slat: {cartItem.parameters.slat}</li>
                                         </ul>
                                     </div>
@@ -51,7 +51,7 @@ class ShoppingCart extends React.Component {
                                             <span className="badge badge-primary badge-pill">{cartItem.quantity} pieces</span>
                                         </div>
                                         <div className="col-6 text-right">
-                                            <b>{cartItem.price} Ft</b>
+                                            <b>{cartItem.price} HUF</b>
                                         </div>
                                     </div>
                                 </li>
