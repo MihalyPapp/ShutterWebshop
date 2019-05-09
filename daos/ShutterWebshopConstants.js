@@ -21,6 +21,7 @@ module.exports = {
                 State: 'state',
                 Zip: 'zip'
             },
+            price: 'price',
             date: 'date',
             status: 'status'
         }

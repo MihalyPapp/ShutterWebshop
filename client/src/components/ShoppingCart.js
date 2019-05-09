@@ -31,7 +31,7 @@ class ShoppingCart extends React.Component {
         return (
             <div className="card h-100">
                 <div className="card-header">
-                    ShoppingCart
+                    Shopping Cart
                 </div>
                 <div className="card-body">
                     <ul className="list-group list-group-flush">

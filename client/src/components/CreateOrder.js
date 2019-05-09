@@ -14,6 +14,7 @@ class CreateOrder extends React.Component {
         this._onOrderChange = this._onOrderChange.bind(this);
         this.state = {
             cartItems: ShoppingCartStore._cartItems,
+            cartPrice: ShoppingCartStore._cartPrice,
             username: "",
             email: "",
             address: "",
@@ -26,7 +27,10 @@ class CreateOrder extends React.Component {
     }
 
     _onCartChange() {
-        this.setState({cartItems: ShoppingCartStore._cartItems});
+        this.setState({
+            cartItems: ShoppingCartStore._cartItems,
+            cartPrice: ShoppingCartStore._cartPrice
+        });
     }
 
     _onOrderChange() {
@@ -52,8 +56,9 @@ class CreateOrder extends React.Component {
                 address: this.state.address,
                 city: this.state.city,
                 state: this.state.state,
-                zip: this.state.zip,
-            }
+                zip: this.state.zip
+            },
+            price: this.state.cartPrice
         };
         OrderActions.sendOrder(orderItem);
         this.setState({orderSent: 1});

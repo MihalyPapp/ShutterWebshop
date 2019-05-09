@@ -76,7 +76,7 @@ class CustomerOrders extends React.Component {
                                                                     <ul style={{listStyleType: 'none'}}>
                                                                         <li><strong>Name:</strong> {cartItem.shutter.name}</li>
                                                                         <li><strong>Part number:</strong> {cartItem.shutter.partNo}</li>
-                                                                        <li><strong>Price:</strong> {cartItem.shutter.price} HUF</li>
+                                                                        <li><strong>Price:</strong> {cartItem.price} HUF</li>
                                                                         <li><strong>Quantity:</strong> {cartItem.quantity} pcs</li>
                                                                         <li><strong>Height:</strong> {cartItem.parameters.height} cm</li>
                                                                         <li><strong>Width:</strong> {cartItem.parameters.width} cm</li>
@@ -87,7 +87,8 @@ class CustomerOrders extends React.Component {
                                                         })}
                                                     </div>
                                                 </div>
-                                                <h6 className="text-danger">Total price:  HUF</h6>
+                                                <h6 className="text-danger">Total price: {order.price} HUF</h6>
+                                                <h6 >Status: {order.status}</h6>
                                             </li>
                                         );
                                     })}
