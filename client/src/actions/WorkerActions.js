@@ -9,9 +9,9 @@ class WorkerActions {
         });
     }
 
-    fetchParameters(_id) {
+    fetchOrderParameters(_id) {
         ShutterWebshopDispatcher.handleViewAction(({
-            actionType: WorkerConstants.FETCH_PARAMETERS,
+            actionType: WorkerConstants.FETCH_ORDER_PARAMETERS,
             payload: _id
         }));
     }

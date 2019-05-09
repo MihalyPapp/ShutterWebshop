@@ -3,7 +3,8 @@ import {EventEmitter} from 'events';
 class WorkerStore extends EventEmitter {
 
     _orders = [];
-    _selectedOrderParts = [];
+    _selectedOrderParameters = [];
+    _selectedOrderId = null;
 
     emitChange() {
         this.emit('change');

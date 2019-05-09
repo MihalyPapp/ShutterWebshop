@@ -44,8 +44,13 @@ class WorkerDAO {
             const parameters = ShutterWebshopConstants.collections.orders.cartItems.parameters.objectName;
             const shutter = ShutterWebshopConstants.collections.orders.cartItems.shutter.objectName;
             const partNo = ShutterWebshopConstants.collections.orders.cartItems.shutter.partNo;
+            const quantity = ShutterWebshopConstants.collections.orders.cartItems.quantity;
 
-            orders.find({[id] : ObjectId(_id)}).project({[cartItems+'.'+parameters]: 1, [cartItems+'.'+shutter+'.'+partNo]: 1}).toArray((err, docs) => {
+            orders.find({[id] : ObjectId(_id)}).project({
+                [cartItems+'.'+parameters]: 1,
+                [cartItems+'.'+shutter+'.'+partNo]: 1,
+                [cartItems+'.'+quantity]: 1,
+            }).toArray((err, docs) => {
                 assert.equal(err, null);
                 callback(docs);
             })

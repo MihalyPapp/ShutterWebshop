@@ -11,9 +11,7 @@ class Worker extends React.Component {
                 <div className="col-md-1">
 
                 </div>
-                <div className="col-md-7">
-
-                </div>
+                <div className="col-md-7" id="workerContentPanel"/>
             </div>
         );
     }

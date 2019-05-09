@@ -1,4 +1,4 @@
 module.exports = {
     FETCH_ORDERS: 'fetch-orders',
-    FETCH_PARAMETERS: 'fetch-parameters'
+    FETCH_ORDER_PARAMETERS: 'fetch-order-parameters'
 };

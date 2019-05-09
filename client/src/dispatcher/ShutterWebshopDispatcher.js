@@ -1,4 +1,8 @@
 import {Dispatcher} from 'flux';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import ParameterPanel from '../components/worker/ParameterPanel';
 
 import ShutterConstants from '../constants/ShutterConstants';
 import ShoppingCartConstants from '../constants/ShoppingCartConstants';
@@ -147,15 +151,20 @@ dispatcher.register((data) => {
 });
 
 dispatcher.register((data) => {
-    if(data.payload.actionType !== WorkerConstants.FETCH_PARAMETERS) {
+    if(data.payload.actionType !== WorkerConstants.FETCH_ORDER_PARAMETERS) {
         return;
     }
     fetch(`/worker/order/parameters/list/${data.payload.payload}`, {
     }).then(response => response.json())
         .then(response => {
-            WorkerStore._selectedOrderParts = response;
+            WorkerStore._selectedOrderParameters = response.parameters;
+            WorkerStore._selectedOrderId = response._id;
             WorkerStore.emitChange();
         });
+    ReactDOM.render(
+        React.createElement(ParameterPanel),
+        document.getElementById('workerContentPanel')
+    );
 });
 
 export default dispatcher;

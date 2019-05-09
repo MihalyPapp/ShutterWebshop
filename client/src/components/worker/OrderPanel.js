@@ -9,7 +9,8 @@ class OrderPanel extends React.Component {
         WorkerActions.fetchOrders();
         this._onChange = this._onChange.bind(this);
         this.state = {
-            orders: WorkerStore._orders
+            orders: WorkerStore._orders,
+            username: ""
         };
     }
 
@@ -33,16 +34,17 @@ class OrderPanel extends React.Component {
                     <ul className="list-group">
                         {this.state.orders.map(order => {
                             return(
-                                <li onClick={() => WorkerActions.fetchParameters(order._id)} className="list-group-item" key={order._id}>
+                                <li onClick={() => WorkerActions.fetchOrderParameters(order._id)} className="list-group-item" key={order._id}>
                                     <div className="col-auto">
                                         <div className="row text-info">
                                             <small>{order.date}</small>
                                         </div>
                                         <div className="row">
-                                            Username: {order.username}
+                                            Username: <strong> {order.username}</strong>
                                         </div>
                                     </div>
                                 </li>
+
                             );
                         })}
                     </ul>
