@@ -9,6 +9,12 @@ class WorkerActions {
         });
     }
 
+    fetchParameters(_id) {
+        ShutterWebshopDispatcher.handleViewAction(({
+            actionType: WorkerConstants.FETCH_PARAMETERS,
+            payload: _id
+        }));
+    }
 }
 
 export default new WorkerActions();

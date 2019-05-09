@@ -8,5 +8,10 @@ router.get('/orders/list', (req, res) => {
     });
 });
 
+router.get('/order/parameters/list/:_id', (req, res) => {
+    workerService.listOrderParameters(req.params._id, response => {
+        res.status(200).send(response);
+    });
+});
 
 module.exports = router;

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const orderService = require('../services/CustomerService');
 
-router.post('/orders/add', (req, res) => {
+router.post('/order/add', (req, res) => {
     orderService.addOrder(req.body, response => {
        res.status(200).send(response);
     });

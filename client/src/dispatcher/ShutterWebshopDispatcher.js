@@ -106,7 +106,7 @@ dispatcher.register((data) => {
     if(data.payload.actionType !== CustomerConstants.SEND_ORDER) {
         return;
     }
-    fetch('/customer/orders/add', {
+    fetch('/customer/order/add', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -144,6 +144,18 @@ dispatcher.register((data) => {
             WorkerStore._orders = response;
             WorkerStore.emitChange();
         })
+});
+
+dispatcher.register((data) => {
+    if(data.payload.actionType !== WorkerConstants.FETCH_PARAMETERS) {
+        return;
+    }
+    fetch(`/worker/order/parameters/list/${data.payload.payload}`, {
+    }).then(response => response.json())
+        .then(response => {
+            WorkerStore._selectedOrderParts = response;
+            WorkerStore.emitChange();
+        });
 });
 
 export default dispatcher;
