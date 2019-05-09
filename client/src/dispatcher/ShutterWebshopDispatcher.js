@@ -2,11 +2,13 @@ import {Dispatcher} from 'flux';
 
 import ShutterConstants from '../constants/ShutterConstants';
 import ShoppingCartConstants from '../constants/ShoppingCartConstants';
-import OrderConstants from '../constants/CustomerConstants';
+import CustomerConstants from '../constants/CustomerConstants';
+import WorkerConstants from '../constants/WorkerConstants';
 
 import ShutterStore from '../store/ShutterStore';
 import ShoppingCartStore from "../store/ShoppingCartStore";
 import CustomerStore from "../store/CustomerStore";
+import WorkerStore from "../store/WorkerStore";
 
 class ShutterWebshopDispatcher extends Dispatcher {
     handleViewAction(action) {
@@ -37,7 +39,7 @@ dispatcher.register((data) => {
         return;
     }
 
-    fetch(`/shutters/${data.payload.payload}`)
+    fetch(`/shutters/list/${data.payload.payload}`)
         .then(response => {return response.json()})
         .then(response => {
             ShutterStore._selectedShutter = response[0];
@@ -101,10 +103,10 @@ dispatcher.register((data) => {
 });
 
 dispatcher.register((data) => {
-    if(data.payload.actionType !== OrderConstants.SEND_ORDER) {
+    if(data.payload.actionType !== CustomerConstants.SEND_ORDER) {
         return;
     }
-    fetch('/orders/add', {
+    fetch('/customer/orders/add', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -121,15 +123,27 @@ dispatcher.register((data) => {
 });
 
 dispatcher.register((data) => {
-   if(data.payload.actionType !== OrderConstants.FETCH_ORDERS_BY_USERNAME) {
+   if(data.payload.actionType !== CustomerConstants.FETCH_ORDERS_BY_USERNAME) {
        return;
    }
-   fetch(`/orders/user/${data.payload.payload}`)
+   fetch(`/customer/orders/list/${data.payload.payload}`)
        .then(response => {return response.json()})
        .then(response => {
            CustomerStore._ordersByUsername = response;
            CustomerStore.emitChange();
        })
+});
+
+dispatcher.register((data) => {
+    if(data.payload.actionType !== WorkerConstants.FETCH_ORDERS) {
+        return;
+    }
+    fetch('/worker/orders/list')
+        .then(response => {return response.json()})
+        .then(response => {
+            WorkerStore._orders = response;
+            WorkerStore.emitChange();
+        })
 });
 
 export default dispatcher;

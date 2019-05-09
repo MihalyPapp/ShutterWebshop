@@ -4,9 +4,9 @@ const ShutterWebshopConstants = require('./ShutterWebshopConstants');
 
 const url = 'mongodb://172.21.0.10:27017';
 
-class OrderDAO {
+class CustomerDAO {
 
-    insertCustomerOrder(order, callback) {
+    insertOrder(order, callback) {
         const client = MongoClient(url);
         client.connect((err) => {
             if(err != null) {
@@ -43,10 +43,9 @@ class OrderDAO {
             orders.find({[infos+'.'+username]: _username}).toArray((err, docs) => {
                 assert.equal(err, null);
                 callback(docs);
-                console.log(docs);
             })
         });
     }
 }
 
-module.exports = new OrderDAO;
+module.exports = new CustomerDAO;

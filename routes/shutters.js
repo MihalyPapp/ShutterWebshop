@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const shutterService = require('../services/shutterService');
+const shutterService = require('../services/ShutterService');
 
 router.get('/list/:_id', (req, res) => {
     shutterService.listShuttersById(req.params._id, shutter => {
@@ -14,14 +14,5 @@ router.get('/list', (req, res) => {
     });
 });
 
-router.get('/:_id', (req, res) => {
-    req.url = `/list/${req.params._id}`;
-    router.handle(req, res);
-});
-
-router.get('/', (req, res) => {
-    req.url = '/list';
-    router.handle(req, res);
-});
 
 module.exports = router;
