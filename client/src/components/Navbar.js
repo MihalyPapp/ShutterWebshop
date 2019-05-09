@@ -14,11 +14,10 @@ class Navbar extends React.Component {
                         <span className="navbar-toggler-icon"/>
                     </button>
 
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div className="collapse navbar-collapse">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item dropdown">
-                                <div to="/" className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div className="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Customer
                                 </div>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -28,19 +27,11 @@ class Navbar extends React.Component {
                                     <Link to="/customer/orders" className="dropdown-item" >View Own Orders</Link>
                                 </div>
                             </li>
-                            <li className="nav-item dropdown">
-                                <div className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Worker
-                                </div>
-                                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <div className="dropdown-item" >List Orders</div>
-                                    <div className="dropdown-item" >Select Job (Shutter)</div>
-                                </div>
+                            <li className="nav-item">
+                                <Link to="/worker" className="nav-link">Worker</Link>
                             </li>
                             <li className="nav-item dropdown">
-                                <div className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Manager
                                 </div>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">

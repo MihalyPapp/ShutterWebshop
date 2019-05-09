@@ -6,7 +6,7 @@ import OrderConstants from '../constants/OrderConstants';
 
 import ShutterStore from '../store/ShutterStore';
 import ShoppingCartStore from "../store/ShoppingCartStore";
-import OrderStore from "../store/OrderStore";
+import OrderStore from "../store/CustomerOrderStore";
 
 class ShutterWebshopDispatcher extends Dispatcher {
     handleViewAction(action) {

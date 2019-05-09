@@ -1,6 +1,6 @@
 import React from 'react';
 import OrderActions from "../actions/OrderActions";
-import OrderStore from "../store/OrderStore";
+import CustomerOrderStore from "../store/CustomerOrderStore";
 
 class CustomerOrders extends React.Component {
     constructor(props) {
@@ -13,15 +13,15 @@ class CustomerOrders extends React.Component {
     }
 
     _onChange() {
-        this.setState({userOrders: OrderStore._ordersByUsername});
+        this.setState({userOrders: CustomerOrderStore._ordersByUsername});
     }
 
     componentDidMount() {
-        OrderStore.addChangeListener(this._onChange);
+        CustomerOrderStore.addChangeListener(this._onChange);
     }
 
     componentWillUnmount() {
-        OrderStore.removeChangeListener(this._onChange);
+        CustomerOrderStore.removeChangeListener(this._onChange);
     }
 
     render() {
@@ -72,7 +72,7 @@ class CustomerOrders extends React.Component {
                                                         <h6>Ordered Shutter(s):</h6>
                                                         {order.cartItems.map(cartItem => {
                                                             return (
-                                                                <div className="mb-3 overflow-auto">
+                                                                <div key={JSON.stringify(cartItem)} className="mb-3 overflow-auto">
                                                                     <ul style={{listStyleType: 'none'}}>
                                                                         <li><strong>Name:</strong> {cartItem.shutter.name}</li>
                                                                         <li><strong>Part number:</strong> {cartItem.shutter.partNo}</li>

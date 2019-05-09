@@ -5,7 +5,7 @@ import ShoppingCart from './ShoppingCart'
 import ShoppingCartStore from '../store/ShoppingCartStore';
 
 import OrderActions from '../actions/OrderActions'
-import OrderStore from '../store/OrderStore';
+import CustomerOrderStore from '../store/CustomerOrderStore';
 
 class CreateOrder extends React.Component {
     constructor(props) {
@@ -22,7 +22,7 @@ class CreateOrder extends React.Component {
             state: "",
             zip: "",
             orderSent: 0, //1 or 0
-            sentOrderResponse: OrderStore._sentOrderResponse
+            sentOrderResponse: CustomerOrderStore._sentOrderResponse
         };
     }
 
@@ -34,17 +34,17 @@ class CreateOrder extends React.Component {
     }
 
     _onOrderChange() {
-        this.setState({sentOrderResponse: OrderStore._sentOrderResponse});
+        this.setState({sentOrderResponse: CustomerOrderStore._sentOrderResponse});
     }
 
     componentDidMount() {
         ShoppingCartStore.addChangeListener(this._onCartChange);
-        OrderStore.addChangeListener(this._onOrderChange);
+        CustomerOrderStore.addChangeListener(this._onOrderChange);
     }
 
     componentWillUnmount() {
         ShoppingCartStore.removeChangeListener(this._onCartChange);
-        OrderStore.removeChangeListener(this._onOrderChange);
+        CustomerOrderStore.removeChangeListener(this._onOrderChange);
     }
 
     onSendBtnClick = () => {
