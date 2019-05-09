@@ -1,9 +1,11 @@
 import React from 'react';
 
-class WorkerOrdersPanel extends React.Component {
-   /* constructor(props) {
+import WrokerActions from '../../actions/WorkerActions';
+
+class WorkerListOrdersPanel extends React.Component {
+    /*constructor(props) {
         super(props);
-        WorkerActions.fetchOrders();
+        WrokerActions.fetchOrders();
         this._onChange = this._onChange.bind(this);
         this.state = {orders: WorkerStore._orders};
     }
@@ -18,8 +20,7 @@ class WorkerOrdersPanel extends React.Component {
 
     componentWillUnmount() {
         MovieStore.removeChangeListener(this._onChange());
-    }
-*/
+    }*/
 
     render() {
         return (
@@ -34,4 +35,4 @@ class WorkerOrdersPanel extends React.Component {
     }
 }
 
-export default WorkerOrdersPanel;
+export default WorkerListOrdersPanel;

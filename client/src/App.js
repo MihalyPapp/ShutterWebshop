@@ -7,7 +7,7 @@ import ShutterDeck from './components/ShutterDeck';
 import ShutterDetails from './components/ShutterDetails';
 import CreateOrder from './components/CreateOrder';
 import CustomerOrders from './components/CustomerOrders';
-import WorkerOrdersPanel from './components/worker/WorkerOrdersPanel';
+import WorkerListOrdersPanel from './components/worker/WorkerListOrdersPanel';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
         <Route path="/shutters/:id" exact component={ShutterDetails}/>
         <Route path="/customer/createOrder" exact component={CreateOrder}/>
         <Route path="/customer/orders" exact component={CustomerOrders}/>
-        <Route path="/worker" exact component={WorkerOrdersPanel}/>
+        <Route path="/worker" exact component={WorkerListOrdersPanel}/>
         </BrowserRouter>
     </div>
   );

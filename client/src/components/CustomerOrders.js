@@ -1,6 +1,6 @@
 import React from 'react';
-import OrderActions from "../actions/OrderActions";
-import CustomerOrderStore from "../store/CustomerOrderStore";
+import CustomerActions from "../actions/CustomerActions";
+import CustomerStore from "../store/CustomerStore";
 
 class CustomerOrders extends React.Component {
     constructor(props) {
@@ -13,15 +13,15 @@ class CustomerOrders extends React.Component {
     }
 
     _onChange() {
-        this.setState({userOrders: CustomerOrderStore._ordersByUsername});
+        this.setState({userOrders: CustomerStore._ordersByUsername});
     }
 
     componentDidMount() {
-        CustomerOrderStore.addChangeListener(this._onChange);
+        CustomerStore.addChangeListener(this._onChange);
     }
 
     componentWillUnmount() {
-        CustomerOrderStore.removeChangeListener(this._onChange);
+        CustomerStore.removeChangeListener(this._onChange);
     }
 
     render() {
@@ -40,7 +40,7 @@ class CustomerOrders extends React.Component {
                     </div>
                     <div className="col-auto">
                         <button
-                            onClick={() => OrderActions.fetchOrdersByUsername(this.state.username)}
+                            onClick={() => CustomerActions.fetchOrdersByUsername(this.state.username)}
                             className="btn btn-success float-none">Fetch orders
                         </button>
                     </div>

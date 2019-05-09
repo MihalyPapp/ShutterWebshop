@@ -4,8 +4,8 @@ import {Link} from 'react-router-dom'
 import ShoppingCart from './ShoppingCart'
 import ShoppingCartStore from '../store/ShoppingCartStore';
 
-import OrderActions from '../actions/OrderActions'
-import CustomerOrderStore from '../store/CustomerOrderStore';
+import OrderActions from '../actions/CustomerActions'
+import CustomerStore from '../store/CustomerStore';
 
 class CreateOrder extends React.Component {
     constructor(props) {
@@ -22,7 +22,7 @@ class CreateOrder extends React.Component {
             state: "",
             zip: "",
             orderSent: 0, //1 or 0
-            sentOrderResponse: CustomerOrderStore._sentOrderResponse
+            sentOrderResponse: CustomerStore._sentOrderResponse
         };
     }
 
@@ -34,17 +34,17 @@ class CreateOrder extends React.Component {
     }
 
     _onOrderChange() {
-        this.setState({sentOrderResponse: CustomerOrderStore._sentOrderResponse});
+        this.setState({sentOrderResponse: CustomerStore._sentOrderResponse});
     }
 
     componentDidMount() {
         ShoppingCartStore.addChangeListener(this._onCartChange);
-        CustomerOrderStore.addChangeListener(this._onOrderChange);
+        CustomerStore.addChangeListener(this._onOrderChange);
     }
 
     componentWillUnmount() {
         ShoppingCartStore.removeChangeListener(this._onCartChange);
-        CustomerOrderStore.removeChangeListener(this._onOrderChange);
+        CustomerStore.removeChangeListener(this._onOrderChange);
     }
 
     onSendBtnClick = () => {

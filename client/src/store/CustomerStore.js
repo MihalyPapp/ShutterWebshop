@@ -1,6 +1,6 @@
 import {EventEmitter} from 'events';
 
-class CustomerOrderStore extends EventEmitter {
+class CustomerStore extends EventEmitter {
 
     _sentOrderResponse = {};
     _ordersByUsername = [];
@@ -18,4 +18,4 @@ class CustomerOrderStore extends EventEmitter {
     }
 }
 
-export default new CustomerOrderStore();
+export default new CustomerStore();

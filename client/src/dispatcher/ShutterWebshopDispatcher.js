@@ -2,11 +2,11 @@ import {Dispatcher} from 'flux';
 
 import ShutterConstants from '../constants/ShutterConstants';
 import ShoppingCartConstants from '../constants/ShoppingCartConstants';
-import OrderConstants from '../constants/OrderConstants';
+import OrderConstants from '../constants/CustomerConstants';
 
 import ShutterStore from '../store/ShutterStore';
 import ShoppingCartStore from "../store/ShoppingCartStore";
-import OrderStore from "../store/CustomerOrderStore";
+import CustomerStore from "../store/CustomerStore";
 
 class ShutterWebshopDispatcher extends Dispatcher {
     handleViewAction(action) {
@@ -112,8 +112,8 @@ dispatcher.register((data) => {
         body: JSON.stringify(data.payload.payload)
     }).then(response => response.json())
         .then(response => {
-            OrderStore._sentOrderResponse = response;
-            OrderStore.emitChange();
+            CustomerStore._sentOrderResponse = response;
+            CustomerStore.emitChange();
             ShoppingCartStore._cartItems = [];
             ShoppingCartStore._cartPrice = 0;
             ShoppingCartStore.emitChange();
@@ -127,8 +127,8 @@ dispatcher.register((data) => {
    fetch(`/orders/user/${data.payload.payload}`)
        .then(response => {return response.json()})
        .then(response => {
-           OrderStore._ordersByUsername = response;
-           OrderStore.emitChange();
+           CustomerStore._ordersByUsername = response;
+           CustomerStore.emitChange();
        })
 });
 
