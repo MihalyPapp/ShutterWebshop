@@ -8,12 +8,17 @@ class ParameterPanel extends React.Component {
         super(props);
         this._onChange = this._onChange.bind(this);
         this.state = {
-            selectedOrderParameters: WorkerStore._selectedOrderParameters
+            selectedOrderParameters: WorkerStore._selectedOrderParameters,
+            selectedOrderId: null,
+            workerUsername: ""
         }
     }
 
     _onChange() {
-        this.setState({selectedOrderParameters: WorkerStore._selectedOrderParameters});
+        this.setState({
+            selectedOrderParameters: WorkerStore._selectedOrderParameters,
+            selectedOrderId: WorkerStore._selectedOrderId
+        });
     }
 
     componentDidMount() {
@@ -48,15 +53,17 @@ class ParameterPanel extends React.Component {
                         })}
                     </ul>
                     <div className="form-group row">
-                        <label className="col-sm-3 col-form-label">Username:</label>
+                        <label className="col-sm-3 col-form-label">Worker username:</label>
                         <div className="input-group col-sm-6">
                             <input
-                                onChange={(event) => {this.setState({username: event.target.value})}}
-                                className="form-control" placeholder="Username" autoComplete="off"
+                                onChange={(event) => {this.setState({workerUsername: event.target.value})}}
+                                className="form-control" placeholder="Worker username" autoComplete="off"
                             />
                         </div>
                         <div className="input-group col-sm-3">
-                            <button className="btn btn-success float-none">Send order</button>
+                            <button
+                                onClick={() => {WorkerActions.updateOrder({_id: this.state.selectedOrderId, workerUsername: this.state.workerUsername})}}
+                                className="btn btn-success float-none">Assembled</button>
                         </div>
                     </div>
                 </div>

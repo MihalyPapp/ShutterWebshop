@@ -14,4 +14,10 @@ router.get('/order/parameters/list/:_id', (req, res) => {
     });
 });
 
+router.post('/order/update', (req, res) => {
+    workerService.updateOrder(req.body, response => {
+        res.status(200).send(response);
+    });
+});
+
 module.exports = router;

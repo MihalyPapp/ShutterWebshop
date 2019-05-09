@@ -56,6 +56,27 @@ class WorkerDAO {
             })
         });
     }
+
+    updateOrder(data, callback) {
+        const client = MongoClient(url);
+        client.connect((err) => {
+            if(err != null) {
+                console.log(err);
+                callback([])
+            }
+
+            const db = client.db(ShutterWebshopConstants.dbName);
+            const orders = db.collection(ShutterWebshopConstants.collections.orders.collectionName);
+            const id = ShutterWebshopConstants.collections.orders._id;
+            const status = ShutterWebshopConstants.collections.orders.status;
+            const workerUsername = ShutterWebshopConstants.collections.orders.workerUsername;
+
+            orders.updateOne({[id]: ObjectId(data._id)}, {"$set": {[status]: data.status, [workerUsername]: data.username}})
+                .then(result => {
+                    callback(result);
+                })
+        });
+    }
 }
 
 module.exports = new WorkerDAO;

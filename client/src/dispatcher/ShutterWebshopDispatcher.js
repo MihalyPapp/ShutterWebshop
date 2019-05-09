@@ -167,4 +167,20 @@ dispatcher.register((data) => {
     );
 });
 
+dispatcher.register((data) => {
+    if(data.payload.actionType !== WorkerConstants.UPDATE_ORDER) {
+        return;
+    }
+    fetch('/worker/order/update', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data.payload.payload)
+    }).then(response => response.json())
+        .then(response => {
+
+        });
+});
+
 export default dispatcher;

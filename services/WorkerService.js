@@ -19,11 +19,16 @@ WorkerService.prototype.listOrderParameters = function(_id, callback) {
             });
         });
         const order = {
-            id: result[0]._id,
+            _id: result[0]._id,
             parameters
         };
         callback(order);
     });
+};
+
+WorkerService.prototype.updateOrder = function(data, callback) {
+    data['status'] = 'ASSEMBLED';
+    this.workerDAO.updateOrder(data, callback);
 };
 
 module.exports = new WorkerService();

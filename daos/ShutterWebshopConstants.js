@@ -42,7 +42,8 @@ module.exports = {
             username: 'username',
             price: 'price',
             date: 'date',
-            status: 'status'
+            status: 'status',
+            workerUsername: 'workerUsername'
         }
     }
 };
