@@ -5,6 +5,7 @@ class WorkerStore extends EventEmitter {
     _orders = [];
     _selectedOrderParameters = [];
     _selectedOrderId = null;
+    _sentUpdateResponse = null;
 
     emitChange() {
         this.emit('change');

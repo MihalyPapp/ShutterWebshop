@@ -3,12 +3,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import ParameterPanel from '../components/worker/ParameterPanel';
-
 import ShutterConstants from '../constants/ShutterConstants';
 import ShoppingCartConstants from '../constants/ShoppingCartConstants';
 import CustomerConstants from '../constants/CustomerConstants';
 import WorkerConstants from '../constants/WorkerConstants';
-
 import ShutterStore from '../store/ShutterStore';
 import ShoppingCartStore from "../store/ShoppingCartStore";
 import CustomerStore from "../store/CustomerStore";
@@ -179,8 +177,14 @@ dispatcher.register((data) => {
         body: JSON.stringify(data.payload.payload)
     }).then(response => response.json())
         .then(response => {
-
+            const orderIndex = WorkerStore._orders.findIndex(order => {
+                return order._id === WorkerStore._selectedOrderId
+            });
+            WorkerStore._orders.splice(orderIndex, 1);
+            WorkerStore._sentUpdateResponse = response;
+            WorkerStore.emitChange();
         });
+    ReactDOM.unmountComponentAtNode(document.getElementById('workerContentPanel'));
 });
 
 export default dispatcher;
