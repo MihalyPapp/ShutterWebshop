@@ -71,7 +71,7 @@ class WorkerDAO {
             const status = ShutterWebshopConstants.collections.orders.status;
             const workerUsername = ShutterWebshopConstants.collections.orders.workerUsername;
 
-            orders.updateOne({[id]: ObjectId(data._id)}, {"$set": {[status]: data.status, [workerUsername]: data.username}})
+            orders.updateOne({[id]: ObjectId(data._id)}, {"$set": {[status]: data.status, [workerUsername]: data.workerUsername}})
                 .then(result => {
                     callback(result);
                 })

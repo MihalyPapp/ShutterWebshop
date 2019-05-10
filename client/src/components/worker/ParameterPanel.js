@@ -10,14 +10,16 @@ class ParameterPanel extends React.Component {
         this.state = {
             selectedOrderParameters: WorkerStore._selectedOrderParameters,
             selectedOrderId: null,
-            workerUsername: ""
+            sentUpdateResponse: {},
+            workerUsername: "",
         }
     }
 
     _onChange() {
         this.setState({
             selectedOrderParameters: WorkerStore._selectedOrderParameters,
-            selectedOrderId: WorkerStore._selectedOrderId
+            selectedOrderId: WorkerStore._selectedOrderId,
+            sentUpdateResponse: WorkerStore._sentUpdateResponse,
         });
     }
 
@@ -29,8 +31,25 @@ class ParameterPanel extends React.Component {
         WorkerStore.removeChangeListener(this._onChange);
     }
 
+    onBtnClick = () => {
+        WorkerActions.setUpdateSentStatus(1);
+        WorkerActions.updateOrder({_id: this.state.selectedOrderId, workerUsername: this.state.workerUsername})
+    };
+
+    renderResponseMsg() {
+        if(this.state.sentUpdateResponse === null) {
+            return <div/>
+        }
+        if(this.state.sentUpdateResponse.ok === 1) {
+            return <div className="alert alert-success"><strong>Success!</strong> The order has been updated!</div>;
+        } else if(this.state.sentUpdateResponse.ok === 0) {
+            return <div className="alert alert-danger"><strong>Error!</strong> Something wrong.</div>;
+        } else {
+            return <div className="spinner-border"><span className="sr-only">Loading..</span></div>;
+        }
+    }
+
     render() {
-        console.log(this.state.selectedOrderParameters)
         return (
             <div className="card">
                 <div className="card-header">Parameters</div>
@@ -62,10 +81,11 @@ class ParameterPanel extends React.Component {
                         </div>
                         <div className="input-group col-sm-3">
                             <button
-                                onClick={() => {WorkerActions.updateOrder({_id: this.state.selectedOrderId, workerUsername: this.state.workerUsername})}}
+                                onClick={() => this.onBtnClick()}
                                 className="btn btn-success float-none">Assembled</button>
                         </div>
                     </div>
+                    {this.state.updateSent ? this.renderResponseMsg() : ''}
                 </div>
             </div>
         );

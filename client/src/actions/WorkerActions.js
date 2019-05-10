@@ -23,6 +23,13 @@ class WorkerActions {
         });
         console.log(data);
     }
+
+    setUpdateSentStatus(ZeroOrOne) {
+        ShutterWebshopDispatcher.handleViewAction(({
+            actionType: WorkerConstants.SET_UPDATE_SENT_STATUS,
+            payload: ZeroOrOne
+        }))
+    }
 }
 
 export default new WorkerActions();

@@ -180,11 +180,21 @@ dispatcher.register((data) => {
             const orderIndex = WorkerStore._orders.findIndex(order => {
                 return order._id === WorkerStore._selectedOrderId
             });
-            WorkerStore._orders.splice(orderIndex, 1);
+            if(response.ok) {
+                WorkerStore._orders.splice(orderIndex, 1);
+            }
             WorkerStore._sentUpdateResponse = response;
             WorkerStore.emitChange();
         });
     ReactDOM.unmountComponentAtNode(document.getElementById('workerContentPanel'));
+});
+
+dispatcher.register((data) => {
+   if(data.payload.actionType !== WorkerConstants.SET_UPDATE_SENT_STATUS) {
+       return;
+   }
+   WorkerStore._sentUpdateStatus = data.payload.payload;
+   WorkerStore.emitChange();
 });
 
 export default dispatcher;
