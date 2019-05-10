@@ -26,11 +26,11 @@ class ViewOwnOrders extends React.Component {
 
     renderStatus = (status, date) => {
         const installationDate = new Date(date);
-        const formattedDate = installationDate.getFullYear()+'-'+installationDate.getMonth()+'-'+installationDate.getDate();
+        const formattedDate = installationDate.getFullYear()+'-'+installationDate.getMonth()+'-'+installationDate.getDate()+' '+installationDate.getHours()+':'+installationDate.getMinutes();
         if(status === 'WAITING_FOR_ASSEMBLE')
             return <h6>Status: Under process.</h6>;
         else if (status === 'ASSEMBLED')
-            return <h6>Status: Order was processed. Installation on {formattedDate}.</h6>;
+            return <h6>Status: Order was processed. Installation at {formattedDate}.</h6>;
     };
 
 

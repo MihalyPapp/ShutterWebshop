@@ -15,7 +15,8 @@ class ShutterDetails extends React.Component {
                 name: "",
                 price: "",
                 partNo: "",
-                slats: []
+                slats: [],
+                imgName: "01"
             },
             shoppingCart: ShoppingCartStore._cartItems,
             width: "",

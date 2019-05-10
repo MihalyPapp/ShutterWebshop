@@ -117,7 +117,8 @@ class CreateOrder extends React.Component {
                                 <div className="form-group">
                                     <label>Username</label>
                                     <input
-                                        onChange={event => this.setState({username: event.target.value})}
+                                        value={this.state.username}
+                                        onChange={(event) => this.setState({username: event.target.value})}
                                         className="form-control" placeholder="Username" autoComplete="off"
                                     />
                                 </div>
@@ -126,6 +127,7 @@ class CreateOrder extends React.Component {
                                 <div className="form-group">
                                     <label>Email</label>
                                     <input
+                                        value={this.state.email}
                                         onChange={event => this.setState({email: event.target.value})}
                                         className="form-control" placeholder="Email" autoComplete="off"
                                     />
@@ -135,6 +137,7 @@ class CreateOrder extends React.Component {
                         <div className="form-group">
                             <label>Address</label>
                             <input
+                                value={this.state.address}
                                 onChange={event => this.setState({address: event.target.value})}
                                 className="form-control" placeholder="1234 Main St" autoComplete="off"
                             />
@@ -145,6 +148,7 @@ class CreateOrder extends React.Component {
                                     <div className="form-group">
                                         <label>City</label>
                                         <input
+                                            value={this.state.city}
                                             onChange={event => this.setState({city: event.target.value})}
                                             className="form-control" placeholder="San Francisco" autoComplete="off"
                                         />
@@ -156,6 +160,7 @@ class CreateOrder extends React.Component {
                                     <div className="form-group">
                                         <label>State</label>
                                         <input
+                                            value={this.state.state}
                                             onChange={event => this.setState({state: event.target.value})}
                                             className="form-control" name="state" placeholder="California" autoComplete="off"
                                         />
@@ -167,6 +172,7 @@ class CreateOrder extends React.Component {
                                     <div className="form-group">
                                         <label>Zip</label>
                                         <input
+                                            value={this.state.zip}
                                             onChange={event => this.setState({zip: event.target.value})}
                                             className="form-control" name="zip" placeholder="99999" autoComplete="off"
                                         />
