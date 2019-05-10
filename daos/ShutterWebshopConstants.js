@@ -7,7 +7,8 @@ module.exports = {
             name: 'name',
             partNo: 'partNo',
             slats: 'slats',
-            price: 'price'
+            price: 'price',
+            imgName: 'imgName'
         },
         orders: {
             collectionName: 'orders',

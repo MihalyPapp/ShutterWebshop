@@ -20,8 +20,9 @@ class ShutterDAO {
 
             const shutterName = ShutterWebshopConstants.collections.shutters.name;
             const shutterPrice = ShutterWebshopConstants.collections.shutters.price;
+            const shutterImgName = ShutterWebshopConstants.collections.shutters.imgName;
 
-            shutters.find().project({[shutterName]: 1, [shutterPrice]: 1}).toArray((err, docs) => {
+            shutters.find().project({[shutterName]: 1, [shutterPrice]: 1, [shutterImgName]: 1}).toArray((err, docs) => {
                 assert.equal(err, null);
                 callback(docs);
             });

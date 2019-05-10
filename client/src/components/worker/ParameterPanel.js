@@ -52,7 +52,7 @@ class ParameterPanel extends React.Component {
     render() {
         return (
             <div className="card">
-                <div className="card-header">Parameters</div>
+                <div className="card-header">Parameters and parts</div>
                 <div className="card-body">
                     <ul className="list-group">
                         {this.state.selectedOrderParameters.map(parameter => {
@@ -71,18 +71,18 @@ class ParameterPanel extends React.Component {
                             );
                         })}
                     </ul>
-                    <div className="form-group row">
-                        <label className="col-sm-3 col-form-label">Worker username:</label>
-                        <div className="input-group col-sm-6">
+                    <div className="row top-margin" style={{paddingLeft: '15px'}}>
+                        <label className="col-sm-3-3 col-form-label">Worker username:</label>
+                        <div className="col-md-6 col-auto">
                             <input
                                 onChange={(event) => {this.setState({workerUsername: event.target.value})}}
                                 className="form-control" placeholder="Worker username" autoComplete="off"
                             />
                         </div>
-                        <div className="input-group col-sm-3">
+                        <div className="col-md-3 col-auto">
                             <button
                                 onClick={() => this.onBtnClick()}
-                                className="btn btn-success float-none">Assembled</button>
+                                className="btn btn-success float-none">Assemble</button>
                         </div>
                     </div>
                     {this.state.updateSent ? this.renderResponseMsg() : ''}

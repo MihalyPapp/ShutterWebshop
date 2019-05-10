@@ -1,1 +1,21 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+$margin: 15px;
+$margin-high: 30px;
+
+
+.top-margin {
+  margin-top: $margin;
+}
+
+.top-margin-high {
+  margin-top: $margin-high;
+}
+
+.bottom-margin {
+  margin-bottom: $margin;
+}
+
+.bottom-margin-high {
+  margin-bottom: $margin-high;
+}

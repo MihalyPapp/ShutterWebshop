@@ -63,7 +63,16 @@ class CreateOrder extends React.Component {
             price: this.state.cartPrice
         };
         OrderActions.sendOrder(orderItem);
-        this.setState({orderSent: 1});
+        this.setState({
+            username: "",
+            email: "",
+            address: "",
+            city: "",
+            state: "",
+            zip: "",
+            installationDate: new Date(),
+            orderSent: 1
+        });
         this.renderResponseMsg();
     };
 
@@ -98,13 +107,13 @@ class CreateOrder extends React.Component {
     render() {
         return(
             <div>
-                <div className="row" style={{marginTop: '15px'}}>
+                <div className="row top-margin-high">
                     <div className="col-lg-8 col-auto" style={{marginBottom: '15px'}}>
-                        <h4 className="d-flex justify-content-between align-items-center">
+                        <h4 className="d-flex justify-content-between align-items-center bottom-margin">
                             <span className="text-muted">Create Order</span>
                         </h4>
                         <div className="form-row">
-                            <div className="form-group col-md-6">
+                            <div className="col-md-6">
                                 <div className="form-group">
                                     <label>Username</label>
                                     <input
@@ -113,7 +122,7 @@ class CreateOrder extends React.Component {
                                     />
                                 </div>
                             </div>
-                            <div className="form-group col-md-6">
+                            <div className="col-md-6">
                                 <div className="form-group">
                                     <label>Email</label>
                                     <input
@@ -166,10 +175,10 @@ class CreateOrder extends React.Component {
                             </div>
                         </div>
                         <div className="form-group col-auto">
-                            <div className="row">
-                                <label>Installation date: </label>
+                            <div className="row d-flex justify-content-center">
+                                <label>Pick an installation date</label>
                             </div>
-                            <div className="row">
+                            <div className="row d-flex justify-content-center">
                                 <DatePicker
                                     selected={this.state.installationDate}
                                     onChange={(date) => this.setState({installationDate: date})}
@@ -182,7 +191,7 @@ class CreateOrder extends React.Component {
                             </div>
                         </div>
                         <div className="form-group">
-                            <div className="col-auto">
+                            <div className="col-auto top-margin">
                                 {this.renderSendOrderBtn()}
                                 <Link to="/">
                                     <button type="button" className="btn btn-light float-none">Go to shop</button>

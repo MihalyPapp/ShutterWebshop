@@ -14,13 +14,13 @@ class Navbar extends React.Component {
                         <span className="navbar-toggler-icon"/>
                     </button>
 
-                    <div className="collapse navbar-collapse">
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item dropdown">
                                 <div className="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Customer
                                 </div>
-                                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div className="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdown">
                                     <Link to="/" className="dropdown-item" >Shop</Link>
                                     <Link to="/customer/createOrder" className="dropdown-item" >Create order</Link>
                                     <div className="dropdown-divider"/>

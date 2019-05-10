@@ -71,14 +71,15 @@ class ShutterDetails extends React.Component {
     };
 
     render() {
+        const imageLink = `http://localhost:8080/images/${this.state.selectedShutter.imgName}.jpg`;
         return(
-            <div className="row" style={{marginTop: '15px'}}>
-                <div className="col-lg-8 col-auto" style={{marginBottom: '15px'}}>
+            <div className="row top-margin-high">
+                <div className="col-lg-8 col-auto bottom-margin">
                     <div className="">
                         <div className="jumbotron">
                             <div className="row">
                                 <div className="col-sm-4">
-                                    <img className="card-img-top" src="http://placehold.it/200x200" alt="card"/>
+                                    <img className="card-img-top" src={imageLink} alt="card"/>
                                 </div>
                                 <div className="col-sm-8">
                                     <h3>{this.state.selectedShutter.name}</h3>
@@ -89,9 +90,9 @@ class ShutterDetails extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="container" style={{marginBottom: '15px'}}>
-                            <h4 className="d-flex justify-content-between align-items-center">
-                                <span className="text-muted">Window's parameter</span>
+                        <div className="container bottom-margin-high">
+                            <h4 className="d-flex justify-content-between align-items-center bottom-margin-high">
+                                <span className="text-muted">Window's parameters:</span>
                             </h4>
                             <div className="form-group row">
                                 <label className="col-sm-2 col-form-label">Width:</label>
@@ -132,7 +133,7 @@ class ShutterDetails extends React.Component {
                                     </select>
                                 </div>
                             </div>
-                            <div className="row">
+                            <div className="row top-margin-high">
                                 <div className="col-auto">
                                     <button
                                         onClick={() => this.onAddBtnClick()}

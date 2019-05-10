@@ -24,10 +24,20 @@ class ViewOwnOrders extends React.Component {
         CustomerStore.removeChangeListener(this._onChange);
     }
 
+    renderStatus = (status, date) => {
+        const installationDate = new Date(date);
+        const formattedDate = installationDate.getFullYear()+'-'+installationDate.getMonth()+'-'+installationDate.getDate();
+        if(status === 'WAITING_FOR_ASSEMBLE')
+            return <h6>Status: Under process.</h6>;
+        else if (status === 'ASSEMBLED')
+            return <h6>Status: Order was processed. Installation on {formattedDate}.</h6>;
+    };
+
+
     render() {
         console.log(this.state.userOrders);
         return(
-            <div style={{marginTop: '15px'}}>
+            <div className="top-margin-high">
                 <div className="row">
                     <div className="col-auto col-1"/>
                     <div className="col-auto col-5">
@@ -88,7 +98,7 @@ class ViewOwnOrders extends React.Component {
                                                     </div>
                                                 </div>
                                                 <h6 className="text-danger">Total price: {order.price} HUF</h6>
-                                                <h6 >Status: {order.status}</h6>
+                                                {this.renderStatus(order.status, order.installationDate)}
                                             </li>
                                         );
                                     })}

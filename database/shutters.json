@@ -1,48 +1,60 @@
 {
     "_id": "1",
-    "name": "Shutter 01",
-    "price": 5999,
-    "partNo": "R-ma-6000/f",
+    "name": "Traditional shutter with white sheath",
+    "price": 6500,
+    "partNo": "T-sw-45-0001",
     "slats": [
-      "white", "green", "blue"
-    ]
+      "hazelnut", "wooden", "grey", "butter", "coffee"
+    ],
+    "imgName": "01"
 }
 {
   "_id": "2",
-  "name": "Shutter 02",
-  "price": 5499,
-  "partNo": "R-ma-6001/f",
+  "name": "Traditional shutter with brown sheath",
+  "price": 6500,
+  "partNo": "T-sw-45-0002",
   "slats": [
-    "chocolate", "wooden", "white"
-  ]
+    "hazelnut", "wooden", "grey", "butter", "coffee"
+  ],
+  "imgName": "02"
 }
 {
   "_id": "3",
-  "name": "Shutter 03",
-  "price": 6299,
-  "partNo": "R-ma-6002/f",
+  "name": "Redextra shutter with white sheath",
+  "price": 8600,
+  "partNo": "T-sw-45-0003",
   "slats": [
-    "chocolate", "wooden", "white"
-  ]
+    "hazelnut", "wooden", "grey", "butter", "coffee"
+  ],
+  "imgName": "03"
 }
-
 {
   "_id": "4",
-  "name": "Shutter 04",
-  "price": 5590,
-  "partNo": "R-ma-6003/f",
+  "name": "Redextra combined shutter with white sheath",
+  "price": 16900,
+  "partNo": "T-sw-45-0004",
   "slats": [
-    "chocolate", "wooden", "white"
-  ]
+    "hazelnut", "wooden", "grey", "butter", "coffee"
+  ],
+  "imgName": "04"
 }
-
 {
   "_id": "5",
-  "name": "Shutter 05",
-  "price": 4999,
-  "partNo": "R-ma-6004/f",
+  "name": "Redextra shutter with brown sheath",
+  "price": 8600,
+  "partNo": "T-sw-45-0005",
   "slats": [
-    "chocolate", "wooden", "white"
-  ]
+    "hazelnut", "wooden", "grey", "butter", "coffee"
+  ],
+  "imgName": "05"
 }
-
+{
+  "_id": "6",
+  "name": "Redextra combined shutter with brown sheath",
+  "price": 16900,
+  "partNo": "T-sw-45-0006",
+  "slats": [
+    "hazelnut", "wooden", "grey", "butter", "coffee"
+  ],
+  "imgName": "06"
+}

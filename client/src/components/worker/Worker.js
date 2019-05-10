@@ -43,14 +43,13 @@ class Worker extends React.Component {
     }
     render() {
         return (
-            <div className="row">
+            <div className="row top-margin-high">
                 <div className="col-md-4">
+                    {this.state.sentUpdateStatus === 1 ? this.renderResponseMsg() : ''}
                     <OrderPanel/>
                 </div>
-                <div className="col-md-1">
-                    {this.state.sentUpdateStatus === 1 ? this.renderResponseMsg() : ''}
+                <div className="col-md-8" id="workerContentPanel">
                 </div>
-                <div className="col-md-7" id="workerContentPanel"/>
             </div>
         );
     }
