@@ -35,7 +35,9 @@ class OrderPanel extends React.Component {
                     <ul className="list-group">
                         {this.state.orders.map(order => {
                             return(
-                                <li onClick={() => {WorkerActions.fetchOrderParameters(order._id); WorkerActions.setUpdateSentStatus(0)}} className="list-group-item" key={order._id}>
+                                <li onClick={() => {WorkerActions.fetchOrderParameters(order._id); WorkerActions.setUpdateSentStatus(0)}}
+                                    className="list-group-item list-group-item-action"
+                                    key={order._id}>
                                     <div className="col-auto">
                                         <div className="row text-info">
                                             <small>{order.date}</small>

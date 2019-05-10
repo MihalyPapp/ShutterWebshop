@@ -1,5 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css"
 
 import ShoppingCart from '../ShoppingCart'
 import ShoppingCartStore from '../../store/ShoppingCartStore';
@@ -21,6 +23,7 @@ class CreateOrder extends React.Component {
             city: "",
             state: "",
             zip: "",
+            installationDate: new Date(),
             orderSent: 0, //1 or 0
             sentOrderResponse: CustomerStore._sentOrderResponse
         };
@@ -50,13 +53,12 @@ class CreateOrder extends React.Component {
     onSendBtnClick = () => {
         const orderItem = {
             cartItems: this.state.cartItems,
-            infos: {
-                email: this.state.email,
-                address: this.state.address,
-                city: this.state.city,
-                state: this.state.state,
-                zip: this.state.zip
-            },
+            email: this.state.email,
+            address: this.state.address,
+            city: this.state.city,
+            state: this.state.state,
+            zip: this.state.zip,
+            installationDate: this.state.installationDate,
             username: this.state.username,
             price: this.state.cartPrice
         };
@@ -161,6 +163,22 @@ class CreateOrder extends React.Component {
                                         />
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div className="form-group col-auto">
+                            <div className="row">
+                                <label>Installation date: </label>
+                            </div>
+                            <div className="row">
+                                <DatePicker
+                                    selected={this.state.installationDate}
+                                    onChange={(date) => this.setState({installationDate: date})}
+                                    showTimeSelect
+                                    timeFromat='HH:mm'
+                                    timeIntervals={15}
+                                    dateFormat='MMMM d, yyyy h:mm aa'
+                                    timeCaption='time'
+                                />
                             </div>
                         </div>
                         <div className="form-group">

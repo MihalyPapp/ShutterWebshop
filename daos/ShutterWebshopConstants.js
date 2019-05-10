@@ -31,14 +31,11 @@ module.exports = {
                 price: 'price',
                 quantity: 'quantity'
             },
-            infos: {
-                objectName: 'infos',
-                email: 'email',
-                address: 'address',
-                city: 'city',
-                State: 'state',
-                Zip: 'zip'
-            },
+            email: 'email',
+            address: 'address',
+            city: 'city',
+            State: 'state',
+            Zip: 'zip',
             username: 'username',
             price: 'price',
             date: 'date',

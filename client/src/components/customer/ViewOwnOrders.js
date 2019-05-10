@@ -61,11 +61,11 @@ class ViewOwnOrders extends React.Component {
                                                     <div className="col-sm-6 col-auto">
                                                         <h6>{order.date}</h6>
                                                         <ul style={{listStyleType: 'none'}}>
-                                                            <li><strong>Email:</strong> {order.infos.email}</li>
-                                                            <li><strong>Address:</strong> {order.infos.address}</li>
-                                                            <li><strong>State:</strong> {order.infos.state}</li>
-                                                            <li><strong>City:</strong> {order.infos.city}</li>
-                                                            <li><strong>Zip:</strong> {order.infos.zip}</li>
+                                                            <li><strong>Email:</strong> {order.email}</li>
+                                                            <li><strong>Address:</strong> {order.address}</li>
+                                                            <li><strong>State:</strong> {order.state}</li>
+                                                            <li><strong>City:</strong> {order.city}</li>
+                                                            <li><strong>Zip:</strong> {order.zip}</li>
                                                         </ul>
                                                     </div>
                                                     <div className="col-sm-6 col-auto">
