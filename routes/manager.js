@@ -14,4 +14,10 @@ router.get('/order/list/:_id', (req, res) => {
     });
 });
 
+router.get('/statistics/slats/', (req, res) => {
+    managerService.getSlatsStatistics(response => {
+        res.status(200).send(response);
+    });
+});
+
 module.exports = router;

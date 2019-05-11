@@ -27,7 +27,7 @@ WorkerService.prototype.listOrderParameters = function(_id, callback) {
 };
 
 WorkerService.prototype.updateOrder = function(data, callback) {
-    data['status'] = 'ASSEMBLING';
+    data['status'] = 'ASSEMBLED';
     this.workerDAO.updateOrder(data, callback);
 };
 

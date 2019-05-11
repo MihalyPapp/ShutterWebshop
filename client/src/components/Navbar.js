@@ -37,7 +37,7 @@ class Navbar extends React.Component {
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <Link to="/manager" className="dropdown-item">Orders & invoice</Link>
                                     <div className="dropdown-divider"/>
-                                    <div className="dropdown-item">Statistics</div>
+                                    <Link to="/manager/statistics" className="dropdown-item">Statistics</Link>
                                 </div>
                             </li>
                         </ul>

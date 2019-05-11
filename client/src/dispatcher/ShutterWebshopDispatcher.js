@@ -8,12 +8,14 @@ import ShutterConstants from '../constants/ShutterConstants';
 import ShoppingCartConstants from '../constants/ShoppingCartConstants';
 import CustomerConstants from '../constants/CustomerConstants';
 import WorkerConstants from '../constants/WorkerConstants';
-import ManagerConstants from '../constants/ManagerConstants'
+import ManagerConstants from '../constants/ManagerConstants';
+import StatisticsConstants from '../constants/StatisticsConstants';
 import ShutterStore from '../store/ShutterStore';
 import ShoppingCartStore from "../store/ShoppingCartStore";
 import CustomerStore from "../store/CustomerStore";
 import WorkerStore from "../store/WorkerStore";
 import ManagerStore from "../store/ManagerStore";
+import StatisticsStore from '../store/StatisticsStore';
 
 class ShutterWebshopDispatcher extends Dispatcher {
     handleViewAction(action) {
@@ -239,6 +241,19 @@ dispatcher.register((data) => {
         React.createElement(ManagerParameterPanel),
         document.getElementById('managerContentPanel')
     );
+});
+
+dispatcher.register((data) => {
+    if(data.payload.actionType !== StatisticsConstants.FETCH_SLATS_DATA) {
+        return;
+    }
+
+    fetch('/manager/statistics/slats', {
+    }).then(response => response.json())
+        .then(response => {
+            StatisticsStore._slatsData = response;
+            StatisticsStore.emitChange();
+        });
 });
 
 export default dispatcher;

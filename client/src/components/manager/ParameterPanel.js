@@ -1,7 +1,9 @@
 import React from 'react';
+import {PDFDownloadLink} from '@react-pdf/renderer';
 
+import InvoiceDoc from './InvoiceDoc';
 import ManagerStore from '../../store/ManagerStore'
-import ManagerActions from '../../actions/ManagerActions';
+//import ManagerActions from '../../actions/ManagerActions';
 
 class ParameterPanel extends React.Component {
     constructor(props) {
@@ -35,18 +37,6 @@ class ParameterPanel extends React.Component {
         const installationDate = new Date(date);
         const formattedDate = installationDate.getFullYear()+'-'+installationDate.getMonth()+'-'+installationDate.getDate()+' '+installationDate.getHours()+':'+installationDate.getMinutes();
         return(formattedDate);
-    }
-
-    renderBtn() {
-        return (
-            <div className="row top-margin" style={{paddingLeft: '15px'}}>
-                <div className="col-auto">
-                    <button
-                        onClick={() => this.onBtnClick()}
-                        className="btn btn-success float-none">Create invoice</button>
-                </div>
-            </div>
-        );
     }
 
     render() {
@@ -92,7 +82,9 @@ class ParameterPanel extends React.Component {
                                         </div>
                                     </div>
                                     <h6 className="text-danger top-margin">Total price: {this.state.order[0].price} HUF</h6>
-                                    {this.state.order[0].status !== 'WAITING' ? this.renderBtn() : ''}
+                                    <PDFDownloadLink document={<InvoiceDoc order={this.state.order[0]}/>} filename="invoice.pdf">
+                                        {({blob, url, loading, error}) => (loading ? 'Loading document...' : 'Download the invoice!')}
+                                    </PDFDownloadLink>
                                 </li>
                             );
                         })}

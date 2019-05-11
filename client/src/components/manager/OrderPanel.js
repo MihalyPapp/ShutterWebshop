@@ -44,9 +44,7 @@ class OrderPanel extends React.Component {
     renderStatus(status) {
         if(status === 'WAITING') {
             return 'Waiting for worker'
-        } else if (status === 'ASSEMBLING') {
-            return 'Ready for invoice'
-        } else {
+        } else if (status === 'ASSEMBLED') {
             return 'Order completed'
         }
     }
@@ -56,9 +54,7 @@ class OrderPanel extends React.Component {
 
         if(order.status === 'WAITING') {
             classname += ' text-danger';
-        } else if (order.status === 'ASSEMBLING') {
-            classname += ' text-info';
-        } else if (order.status === 'DONE') {
+        } else if (order.status === 'ASSEMBLED') {
             classname += ' text-success';
         }
 
