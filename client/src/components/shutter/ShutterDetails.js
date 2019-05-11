@@ -57,6 +57,11 @@ class ShutterDetails extends React.Component {
             }
         };
         ShoppingCartActions.addToShoppingCart(cartItem);
+        this.setState({
+            width: "",
+            height: "",
+            slat: ""
+        });
     };
 
     renderCreateOrderBtn() {
@@ -99,9 +104,8 @@ class ShutterDetails extends React.Component {
                                 <label className="col-sm-2 col-form-label">Width:</label>
                                 <div className="input-group col-sm-10">
                                     <input
-                                        onChange={(event) => {
-                                            this.setState({width: event.target.value});
-                                        }}
+                                        value={this.state.width}
+                                        onChange={(event) => {this.setState({width: event.target.value})}}
                                         type="number" className="form-control" placeholder="width" autoComplete="off"
                                     />
                                     <div className="input-group-append">
@@ -113,9 +117,8 @@ class ShutterDetails extends React.Component {
                                 <label className="col-sm-2 col-form-label">Height:</label>
                                 <div className="input-group col-sm-10">
                                     <input
-                                        onChange={(event) => {
-                                            this.setState({height: event.target.value})
-                                        }}
+                                        value={this.state.height}
+                                        onChange={(event) => {this.setState({height: event.target.value})}}
                                         type="number" className="form-control" placeholder="height" autoComplete="off"
                                     />
                                     <div className="input-group-append">
@@ -126,7 +129,9 @@ class ShutterDetails extends React.Component {
                             <div className="form-group row">
                                 <label className="col-sm-2 col-form-label">Slat:</label>
                                 <div className="input-group col-sm-10">
-                                    <select onChange={event => this.setState({slat: event.target.value})} className="custom-select">
+                                    <select value={this.state.slat}
+                                            onChange={event => this.setState({slat: event.target.value})}
+                                            className="custom-select">
                                         <option defaultValue={null} label=""/>
                                         {this.state.selectedShutter.slats.map(slat => {
                                             return <option key={slat} value={slat}>{slat}</option>

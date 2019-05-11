@@ -35,7 +35,6 @@ class ViewOwnOrders extends React.Component {
 
 
     render() {
-        console.log(this.state.userOrders);
         return(
             <div className="top-margin-high">
                 <div className="row">

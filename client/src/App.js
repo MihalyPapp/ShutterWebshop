@@ -8,6 +8,7 @@ import ShutterDetails from './components/shutter/ShutterDetails';
 import CreateOrder from './components/customer/CreateOrder';
 import ViewOwnOrders from './components/customer/ViewOwnOrders';
 import Worker from './components/worker/Worker';
+import Manager from './components/manager/Manager';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/customer/createOrder" exact component={CreateOrder}/>
         <Route path="/customer/orders" exact component={ViewOwnOrders}/>
         <Route path="/worker" exact component={Worker}/>
+        <Route path="/manager" exact component={Manager}/>
         </BrowserRouter>
     </div>
   );

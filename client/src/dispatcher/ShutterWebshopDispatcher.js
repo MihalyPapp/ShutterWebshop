@@ -7,10 +7,12 @@ import ShutterConstants from '../constants/ShutterConstants';
 import ShoppingCartConstants from '../constants/ShoppingCartConstants';
 import CustomerConstants from '../constants/CustomerConstants';
 import WorkerConstants from '../constants/WorkerConstants';
+import ManagerConstants from '../constants/ManagerConstants'
 import ShutterStore from '../store/ShutterStore';
 import ShoppingCartStore from "../store/ShoppingCartStore";
 import CustomerStore from "../store/CustomerStore";
 import WorkerStore from "../store/WorkerStore";
+import ManagerStore from "../store/ManagerStore";
 
 class ShutterWebshopDispatcher extends Dispatcher {
     handleViewAction(action) {
@@ -190,11 +192,23 @@ dispatcher.register((data) => {
 });
 
 dispatcher.register((data) => {
-   if(data.payload.actionType !== WorkerConstants.SET_UPDATE_SENT_STATUS) {
+   if(data.payload.actionType !== WorkerConstants.SET_SENT_STATUS) {
        return;
    }
    WorkerStore._sentUpdateStatus = data.payload.payload;
    WorkerStore.emitChange();
+});
+
+dispatcher.register((data) => {
+    if(data.payload.actionType !== ManagerConstants.FETCH_ORDERS) {
+        return;
+    }
+    fetch('/manager/orders/list')
+        .then(response => {return response.json()})
+        .then(response => {
+            ManagerStore._orders = response;
+            ManagerStore.emitChange();
+        })
 });
 
 export default dispatcher;

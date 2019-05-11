@@ -21,7 +21,7 @@ class Worker extends React.Component {
     }
 
     componentDidMount() {
-        WorkerActions.setUpdateSentStatus(0);
+        WorkerActions.setSentStatus(0);
         WorkerStore.addChangeListener(this._onChange);
     }
 

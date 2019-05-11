@@ -24,9 +24,9 @@ class WorkerActions {
         console.log(data);
     }
 
-    setUpdateSentStatus(ZeroOrOne) {
+    setSentStatus(ZeroOrOne) {
         ShutterWebshopDispatcher.handleViewAction(({
-            actionType: WorkerConstants.SET_UPDATE_SENT_STATUS,
+            actionType: WorkerConstants.SET_SENT_STATUS,
             payload: ZeroOrOne
         }))
     }

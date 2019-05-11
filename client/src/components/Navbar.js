@@ -17,13 +17,13 @@ class Navbar extends React.Component {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item dropdown">
-                                <div className="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div className="nav-link dropdown-toggle pointer" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Customer
                                 </div>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdown">
                                     <Link to="/" className="dropdown-item" >Shop</Link>
-                                    <Link to="/customer/createOrder" className="dropdown-item" >Create order</Link>
                                     <div className="dropdown-divider"/>
+                                    <Link to="/customer/createOrder" className="dropdown-item" >Create order</Link>
                                     <Link to="/customer/orders" className="dropdown-item" >View Own Orders</Link>
                                 </div>
                             </li>
@@ -31,14 +31,13 @@ class Navbar extends React.Component {
                                 <Link to="/worker" className="nav-link">Worker</Link>
                             </li>
                             <li className="nav-item dropdown">
-                                <div className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div className="nav-link dropdown-toggle pointer" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Manager
                                 </div>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <div className="dropdown-item">List Orders & Jobs</div>
-                                    <div className="dropdown-item">Organize Installation</div>
+                                    <Link to="/manager" className="dropdown-item">Orders & invoice</Link>
                                     <div className="dropdown-divider"/>
-                                    <div className="dropdown-item">Check Statistics</div>
+                                    <div className="dropdown-item">Statistics</div>
                                 </div>
                             </li>
                         </ul>

@@ -32,7 +32,7 @@ class ParameterPanel extends React.Component {
     }
 
     onBtnClick = () => {
-        WorkerActions.setUpdateSentStatus(1);
+        WorkerActions.setSentStatus(1);
         WorkerActions.updateOrder({_id: this.state.selectedOrderId, workerUsername: this.state.workerUsername})
     };
 
@@ -85,7 +85,6 @@ class ParameterPanel extends React.Component {
                                 className="btn btn-success float-none">Assemble</button>
                         </div>
                     </div>
-                    {this.state.updateSent ? this.renderResponseMsg() : ''}
                 </div>
             </div>
         );
