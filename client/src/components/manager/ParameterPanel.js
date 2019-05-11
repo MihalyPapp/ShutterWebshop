@@ -8,17 +8,13 @@ class ParameterPanel extends React.Component {
         super(props);
         this._onChange = this._onChange.bind(this);
         this.state = {
-            selectedOrderParameters: ManagerStore._selectedOrderParameters,
-            selectedOrderId: null,
-            sentUpdateResponse: {},
+            order: ManagerStore._order,
         }
     }
 
     _onChange() {
         this.setState({
-            selectedOrderParameters: ManagerStore._selectedOrderParameters,
-            selectedOrderId: ManagerStore._selectedOrderId,
-            sentUpdateResponse: ManagerStore._sentUpdateResponse,
+            order: ManagerStore._order,
         });
     }
 
@@ -31,59 +27,76 @@ class ParameterPanel extends React.Component {
     }
 
     onBtnClick = () => {
-        ManagerStore.setSentStatus(1);
-        ManagerStore.updateOrder({_id: this.state.selectedOrderId, workerUsername: this.state.workerUsername})
+        //ManagerStore.updateOrder({_id: this.state.selectedOrderId, workerUsername: this.state.workerUsername})
+        console.log("click")
     };
 
-    renderResponseMsg() {
-        if(this.state.sentUpdateResponse === null) {
-            return <div/>
-        }
-        if(this.state.sentUpdateResponse.ok === 1) {
-            return <div className="alert alert-success"><strong>Success!</strong> The order has been updated!</div>;
-        } else if(this.state.sentUpdateResponse.ok === 0) {
-            return <div className="alert alert-danger"><strong>Error!</strong> Something wrong.</div>;
-        } else {
-            return <div className="spinner-border"><span className="sr-only">Loading..</span></div>;
-        }
+    formatDate(date) {
+        const installationDate = new Date(date);
+        const formattedDate = installationDate.getFullYear()+'-'+installationDate.getMonth()+'-'+installationDate.getDate()+' '+installationDate.getHours()+':'+installationDate.getMinutes();
+        return(formattedDate);
+    }
+
+    renderBtn() {
+        return (
+            <div className="row top-margin" style={{paddingLeft: '15px'}}>
+                <div className="col-auto">
+                    <button
+                        onClick={() => this.onBtnClick()}
+                        className="btn btn-success float-none">Create invoice</button>
+                </div>
+            </div>
+        );
     }
 
     render() {
         return (
             <div className="card">
-                <div className="card-header">Parameters and parts</div>
+                <div className="card-header">Order info</div>
                 <div className="card-body">
-                    <ul className="list-group">
-                        {this.state.selectedOrderParameters.map(parameter => {
+                    <ul className="list-group list-group-flush">
+                        {this.state.order.map(order => {
                             return(
-                                <li className="list-group-item" key={JSON.stringify(parameter)}>
-                                    <div className="col-auto">
-                                        <ul>
-                                            <li>Shutter's partNo.: <strong>{parameter.partNo}</strong></li>
-                                            <li>Width: <strong>{parameter.width}</strong> cm</li>
-                                            <li>Height: <strong>{parameter.height}</strong> cm</li>
-                                            <li>Slat: <strong>{parameter.slat}</strong></li>
-                                            <li>Quantity: <strong>{parameter.quantity}</strong> pcs</li>
-                                        </ul>
+                                <li key={order._id} className="list-group-item">
+                                    <div className="row">
+                                        <div className="col-sm-6 col-auto">
+                                            <h6>{order.date}</h6>
+                                            <ul style={{listStyleType: 'none'}}>
+                                                <li><strong>ID:</strong> {order._id}</li>
+                                                <li><strong>Username:</strong> {order.username}</li>
+                                                <li><strong>Email:</strong> {order.email}</li>
+                                                <li><strong>Address:</strong> {order.address}</li>
+                                                <li><strong>State:</strong> {order.state}</li>
+                                                <li><strong>City:</strong> {order.city}</li>
+                                                <li><strong>Zip:</strong> {order.zip}</li>
+                                                <li><strong>Installation date:</strong> {this.formatDate(order.date)}</li>
+                                            </ul>
+                                        </div>
+                                        <div className="col-sm-6 col-auto">
+                                            <h6>Ordered Shutter(s):</h6>
+                                            {order.cartItems.map(cartItem => {
+                                                return (
+                                                    <div key={JSON.stringify(cartItem)} className="mb-3 overflow-auto">
+                                                        <ul style={{listStyleType: 'none'}}>
+                                                            <li><strong>Name:</strong> {cartItem.shutter.name}</li>
+                                                            <li><strong>Part number:</strong> {cartItem.shutter.partNo}</li>
+                                                            <li><strong>Price:</strong> {cartItem.price} HUF</li>
+                                                            <li><strong>Quantity:</strong> {cartItem.quantity} pcs</li>
+                                                            <li><strong>Height:</strong> {cartItem.parameters.height} cm</li>
+                                                            <li><strong>Width:</strong> {cartItem.parameters.width} cm</li>
+                                                            <li><strong>Slat:</strong> {cartItem.parameters.slat}</li>
+                                                        </ul>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
                                     </div>
+                                    <h6 className="text-danger top-margin">Total price: {this.state.order[0].price} HUF</h6>
+                                    {this.state.order[0].status !== 'WAITING' ? this.renderBtn() : ''}
                                 </li>
                             );
                         })}
                     </ul>
-                    <div className="row top-margin" style={{paddingLeft: '15px'}}>
-                        <label className="col-sm-3-3 col-form-label">Worker username:</label>
-                        <div className="col-md-6 col-auto">
-                            <input
-                                onChange={(event) => {this.setState({workerUsername: event.target.value})}}
-                                className="form-control" placeholder="Worker username" autoComplete="off"
-                            />
-                        </div>
-                        <div className="col-md-3 col-auto">
-                            <button
-                                onClick={() => this.onBtnClick()}
-                                className="btn btn-success float-none">Assemble</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         );

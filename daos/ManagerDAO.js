@@ -21,8 +21,9 @@ class ManagerDAO {
             const status = ShutterWebshopConstants.collections.orders.status;
             const username = ShutterWebshopConstants.collections.orders.username;
             const date = ShutterWebshopConstants.collections.orders.date;
+            const workerUsername = ShutterWebshopConstants.collections.orders.workerUsername;
 
-            orders.find({}).project({[username]: 1, [date]: 1, [status]: 1}).toArray((err, docs) => {
+            orders.find({}).project({[username]: 1, [date]: 1, [status]: 1, [workerUsername]: 1}).toArray((err, docs) => {
                 assert.equal(err, null);
                 callback(docs);
             })

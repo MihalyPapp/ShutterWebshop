@@ -26,7 +26,7 @@ class CustomerDAO {
         })
     }
 
-    findOrderByUsername(username, callback) {
+    findOrder(username, callback) {
         const client = MongoClient(url);
         client.connect((err) => {
             if(err != null) {

@@ -9,7 +9,7 @@ router.post('/order/add', (req, res) => {
 });
 
 router.get('/orders/list/:username', (req, res) => {
-    orderService.listOrderByUsername(req.params.username, response => {
+    orderService.listOrder(req.params.username, response => {
        res.status(200).send(response);
     });
 });

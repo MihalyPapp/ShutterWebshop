@@ -70,7 +70,7 @@ class ViewOwnOrders extends React.Component {
                                             <li key={order._id} className="list-group-item list-group-item-action">
                                                 <div className="row">
                                                     <div className="col-sm-6 col-auto">
-                                                        <h6>{order.date}</h6>
+                                                        <h6 className="text-info">{order.date}</h6>
                                                         <ul style={{listStyleType: 'none'}}>
                                                             <li><strong>Email:</strong> {order.email}</li>
                                                             <li><strong>Address:</strong> {order.address}</li>

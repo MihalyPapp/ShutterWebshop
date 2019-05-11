@@ -41,6 +41,7 @@ class Worker extends React.Component {
             return <div className="spinner-border"><span className="sr-only">Loading..</span></div>;
         }
     }
+
     render() {
         return (
             <div className="row top-margin-high">

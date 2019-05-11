@@ -25,6 +25,32 @@ class OrderPanel extends React.Component {
         ManagerStore.removeChangeListener(this._onChange);
     }
 
+    renderWorkerUsername = (order) => {
+        if(order.status === 'WAITING')
+            return <div/>;
+
+        return (
+            <div className="row">
+                <div className="col-auto">
+                    Worker:
+                </div>
+                <div className="col-auto">
+                    <strong>{order.workerUsername}</strong>
+                </div>
+            </div>
+        );
+    };
+
+    renderStatus(status) {
+        if(status === 'WAITING') {
+            return 'Waiting for worker'
+        } else if (status === 'ASSEMBLING') {
+            return 'Ready for invoice'
+        } else {
+            return 'Order completed'
+        }
+    }
+
     renderList(order) {
         let classname = 'row';
 
@@ -52,6 +78,15 @@ class OrderPanel extends React.Component {
                             <strong>{order.username}</strong>
                         </div>
                     </div>
+                    <div className="row">
+                        <div className="col-auto">
+                            Status:
+                        </div>
+                        <div className="col-auto">
+                            <strong>{this.renderStatus(order.status)}</strong>
+                        </div>
+                    </div>
+                    {this.renderWorkerUsername(order)}
                 </div>
             </li>
         );

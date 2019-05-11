@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import WorkerParameterPanel from '../components/worker/ParameterPanel';
-import ManagerParameterPanel from '../components/worker/ParameterPanel';
+import ManagerParameterPanel from '../components/manager/ParameterPanel';
 import ShutterConstants from '../constants/ShutterConstants';
 import ShoppingCartConstants from '../constants/ShoppingCartConstants';
 import CustomerConstants from '../constants/CustomerConstants';
@@ -227,16 +227,18 @@ dispatcher.register((data) => {
     if(data.payload.actionType !== ManagerConstants.FETCH_ORDER_BY_MANAGER) {
         return;
     }
+
     fetch(`/manager/order/list/${data.payload.payload}`, {
     }).then(response => response.json())
         .then(response => {
             ManagerStore._order = response;
             ManagerStore.emitChange();
         });
-    /*ReactDOM.render(
+
+    ReactDOM.render(
         React.createElement(ManagerParameterPanel),
         document.getElementById('managerContentPanel')
-    );*/
+    );
 });
 
 export default dispatcher;

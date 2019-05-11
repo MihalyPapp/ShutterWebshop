@@ -8,8 +8,8 @@ CustomerService.prototype.addOrder = function(order, callback) {
     this.customerDao.insertOrder(order, callback);
 };
 
-CustomerService.prototype.listOrderByUsername = function(username, callback) {
-    this.customerDao.findOrderByUsername(username, callback);
+CustomerService.prototype.listOrder = function(username, callback) {
+    this.customerDao.findOrder(username, callback);
 };
 
 

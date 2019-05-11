@@ -36,19 +36,6 @@ class ParameterPanel extends React.Component {
         WorkerActions.updateOrder({_id: this.state.orderId, workerUsername: this.state.workerUsername})
     };
 
-    renderResponseMsg() {
-        if(this.state.sentUpdateResponse === null) {
-            return <div/>
-        }
-        if(this.state.sentUpdateResponse.ok === 1) {
-            return <div className="alert alert-success"><strong>Success!</strong> The order has been updated!</div>;
-        } else if(this.state.sentUpdateResponse.ok === 0) {
-            return <div className="alert alert-danger"><strong>Error!</strong> Something wrong.</div>;
-        } else {
-            return <div className="spinner-border"><span className="sr-only">Loading..</span></div>;
-        }
-    }
-
     render() {
         return (
             <div className="card">
