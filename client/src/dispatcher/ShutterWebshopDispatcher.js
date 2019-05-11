@@ -2,7 +2,8 @@ import {Dispatcher} from 'flux';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import ParameterPanel from '../components/worker/ParameterPanel';
+import WorkerParameterPanel from '../components/worker/ParameterPanel';
+import ManagerParameterPanel from '../components/worker/ParameterPanel';
 import ShutterConstants from '../constants/ShutterConstants';
 import ShoppingCartConstants from '../constants/ShoppingCartConstants';
 import CustomerConstants from '../constants/CustomerConstants';
@@ -26,27 +27,27 @@ class ShutterWebshopDispatcher extends Dispatcher {
 const dispatcher = new ShutterWebshopDispatcher();
 
 dispatcher.register((data) => {
-    if(data.payload.actionType !== ShutterConstants.FETCH_SHUTTERS) {
+    if(data.payload.actionType !== ShutterConstants.FETCH_SHUTTERS_DETAILS) {
         return;
     }
 
-    fetch('/shutters/list')
+    fetch('/shutters/details/list')
         .then(response => {return response.json()})
         .then(response => {
-            ShutterStore._shutters = response;
+            ShutterStore._shuttersDetails = response;
             ShutterStore.emitChange();
         })
 });
 
 dispatcher.register((data) => {
-    if(data.payload.actionType !== ShutterConstants.FETCH_SELECTED_SHUTTER) {
+    if(data.payload.actionType !== ShutterConstants.FETCH_SHUTTER) {
         return;
     }
 
     fetch(`/shutters/list/${data.payload.payload}`)
         .then(response => {return response.json()})
         .then(response => {
-            ShutterStore._selectedShutter = response[0];
+            ShutterStore._shutter = response[0];
             ShutterStore.emitChange();
         });
 });
@@ -75,6 +76,7 @@ dispatcher.register((data) => {
         ShoppingCartStore._cartItems[itemIndex].quantity += 1;
         ShoppingCartStore._cartItems[itemIndex].price += calculatedPrice;
     }
+
     ShoppingCartStore._cartPrice += calculatedPrice;
     ShoppingCartStore.emitChange();
 });
@@ -102,6 +104,7 @@ dispatcher.register((data) => {
     } else {
         ShoppingCartStore._cartItems.splice(itemIndex, 1);
     }
+
     ShoppingCartStore._cartPrice -= calculatedPrice;
     ShoppingCartStore.emitChange();
 });
@@ -110,6 +113,7 @@ dispatcher.register((data) => {
     if(data.payload.actionType !== CustomerConstants.SEND_ORDER) {
         return;
     }
+
     fetch('/customer/order/add', {
         method: 'POST',
         headers: {
@@ -127,50 +131,55 @@ dispatcher.register((data) => {
 });
 
 dispatcher.register((data) => {
-   if(data.payload.actionType !== CustomerConstants.FETCH_ORDERS_BY_USERNAME) {
+   if(data.payload.actionType !== CustomerConstants.FETCH_ORDERS_BY_CUSTOMER) {
        return;
    }
+
    fetch(`/customer/orders/list/${data.payload.payload}`)
        .then(response => {return response.json()})
        .then(response => {
-           CustomerStore._ordersByUsername = response;
+           CustomerStore._orders = response;
            CustomerStore.emitChange();
        })
 });
 
 dispatcher.register((data) => {
-    if(data.payload.actionType !== WorkerConstants.FETCH_ORDERS) {
+    if(data.payload.actionType !== WorkerConstants.FETCH_ORDERS_DETAILS_BY_WORKER) {
         return;
     }
-    fetch('/worker/orders/list')
+
+    fetch('/worker/orders/details/list')
         .then(response => {return response.json()})
         .then(response => {
-            WorkerStore._orders = response;
+            WorkerStore._ordersDetails = response;
             WorkerStore.emitChange();
         })
 });
 
 dispatcher.register((data) => {
-    if(data.payload.actionType !== WorkerConstants.FETCH_ORDER_PARAMETERS) {
+    if(data.payload.actionType !== WorkerConstants.FETCH_ORDER_PARAMETERS_BY_WORKER) {
         return;
     }
+
     fetch(`/worker/order/parameters/list/${data.payload.payload}`, {
     }).then(response => response.json())
         .then(response => {
-            WorkerStore._selectedOrderParameters = response.parameters;
-            WorkerStore._selectedOrderId = response._id;
+            WorkerStore._orderParameters = response.parameters;
+            WorkerStore._orderId = response._id;
             WorkerStore.emitChange();
         });
+
     ReactDOM.render(
-        React.createElement(ParameterPanel),
+        React.createElement(WorkerParameterPanel),
         document.getElementById('workerContentPanel')
     );
 });
 
 dispatcher.register((data) => {
-    if(data.payload.actionType !== WorkerConstants.UPDATE_ORDER) {
+    if(data.payload.actionType !== WorkerConstants.UPDATE_ORDER_BY_WORKER) {
         return;
     }
+
     fetch('/worker/order/update', {
         method: 'POST',
         headers: {
@@ -179,36 +188,55 @@ dispatcher.register((data) => {
         body: JSON.stringify(data.payload.payload)
     }).then(response => response.json())
         .then(response => {
-            const orderIndex = WorkerStore._orders.findIndex(order => {
-                return order._id === WorkerStore._selectedOrderId
+            const orderIndex = WorkerStore._ordersDetails.findIndex(order => {
+                return order._id === WorkerStore._orderId
             });
             if(response.ok) {
-                WorkerStore._orders.splice(orderIndex, 1);
+                WorkerStore._ordersDetails.splice(orderIndex, 1);
             }
             WorkerStore._sentUpdateResponse = response;
             WorkerStore.emitChange();
         });
+
     ReactDOM.unmountComponentAtNode(document.getElementById('workerContentPanel'));
 });
 
-dispatcher.register((data) => {
+dispatcher.register((data) => { ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    if(data.payload.actionType !== WorkerConstants.SET_SENT_STATUS) {
        return;
    }
+
    WorkerStore._sentUpdateStatus = data.payload.payload;
    WorkerStore.emitChange();
 });
 
 dispatcher.register((data) => {
-    if(data.payload.actionType !== ManagerConstants.FETCH_ORDERS) {
+    if(data.payload.actionType !== ManagerConstants.FETCH_ORDERS_DETAILS_BY_MANAGER) {
         return;
     }
-    fetch('/manager/orders/list')
+
+    fetch('/manager/orders/details/list')
         .then(response => {return response.json()})
         .then(response => {
-            ManagerStore._orders = response;
+            ManagerStore._ordersDetails = response;
             ManagerStore.emitChange();
         })
+});
+
+dispatcher.register((data) => {
+    if(data.payload.actionType !== ManagerConstants.FETCH_ORDER_BY_MANAGER) {
+        return;
+    }
+    fetch(`/manager/order/list/${data.payload.payload}`, {
+    }).then(response => response.json())
+        .then(response => {
+            ManagerStore._order = response;
+            ManagerStore.emitChange();
+        });
+    /*ReactDOM.render(
+        React.createElement(ManagerParameterPanel),
+        document.getElementById('managerContentPanel')
+    );*/
 });
 
 export default dispatcher;

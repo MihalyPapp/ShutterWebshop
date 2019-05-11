@@ -1,5 +1,4 @@
 module.exports = {
-    FETCH_SHUTTERS: 'fetch-shutters',
-    FETCH_SELECTED_SHUTTER: 'fetch-selected-shutter',
-    SELECTED_SHUTTER_FETCH_BY_ID: 'selected-shutter-fetch-by-id',
+    FETCH_SHUTTERS_DETAILS: 'fetch-shutters-details',
+    FETCH_SHUTTER: 'fetch-shutter'
 };

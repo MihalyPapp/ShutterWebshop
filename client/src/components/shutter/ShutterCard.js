@@ -7,7 +7,7 @@ const ShutterCard = ({shutter}) => {
 
     return (
         <div className="top-margin-high col-sm-6 col-lg-3">
-            <Link onClick={() => {ShutterActions.fetchSelectedShutter(shutter._id)}} to={'/shutters/'+shutter._id}>
+            <Link onClick={() => {ShutterActions.fetchShutter(shutter._id)}} to={'/shutters/'+shutter._id}>
                 <div className="card h-100">
                     <img className="card-img-top img-fluid" src={imageLink} alt="card"/>
                     <div className="card-body">

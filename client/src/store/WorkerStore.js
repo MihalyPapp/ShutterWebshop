@@ -2,9 +2,9 @@ import {EventEmitter} from 'events';
 
 class WorkerStore extends EventEmitter {
 
-    _orders = [];
-    _selectedOrderParameters = [];
-    _selectedOrderId = null;
+    _ordersDetails = [];
+    _orderParameters = [];
+    _orderId = null;
     _sentUpdateResponse = null;
     _sentUpdateStatus = {};
 

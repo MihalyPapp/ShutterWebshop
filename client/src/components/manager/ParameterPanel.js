@@ -1,39 +1,38 @@
 import React from 'react';
 
-import WorkerStore from '../../store/WorkerStore'
-import WorkerActions from '../../actions/WorkerActions';
+import ManagerStore from '../../store/ManagerStore'
+import ManagerActions from '../../actions/ManagerActions';
 
 class ParameterPanel extends React.Component {
     constructor(props) {
         super(props);
         this._onChange = this._onChange.bind(this);
         this.state = {
-            orderParameters: WorkerStore._orderParameters,
-            orderId: null,
+            selectedOrderParameters: ManagerStore._selectedOrderParameters,
+            selectedOrderId: null,
             sentUpdateResponse: {},
-            workerUsername: "",
         }
     }
 
     _onChange() {
         this.setState({
-            orderParameters: WorkerStore._orderParameters,
-            orderId: WorkerStore._orderId,
-            sentUpdateResponse: WorkerStore._sentUpdateResponse,
+            selectedOrderParameters: ManagerStore._selectedOrderParameters,
+            selectedOrderId: ManagerStore._selectedOrderId,
+            sentUpdateResponse: ManagerStore._sentUpdateResponse,
         });
     }
 
     componentDidMount() {
-        WorkerStore.addChangeListener(this._onChange);
+        ManagerStore.addChangeListener(this._onChange);
     }
 
     componentWillUnmount() {
-        WorkerStore.removeChangeListener(this._onChange);
+        ManagerStore.removeChangeListener(this._onChange);
     }
 
     onBtnClick = () => {
-        WorkerActions.setSentStatus(1);
-        WorkerActions.updateOrder({_id: this.state.orderId, workerUsername: this.state.workerUsername})
+        ManagerStore.setSentStatus(1);
+        ManagerStore.updateOrder({_id: this.state.selectedOrderId, workerUsername: this.state.workerUsername})
     };
 
     renderResponseMsg() {
@@ -55,7 +54,7 @@ class ParameterPanel extends React.Component {
                 <div className="card-header">Parameters and parts</div>
                 <div className="card-body">
                     <ul className="list-group">
-                        {this.state.orderParameters.map(parameter => {
+                        {this.state.selectedOrderParameters.map(parameter => {
                             return(
                                 <li className="list-group-item" key={JSON.stringify(parameter)}>
                                     <div className="col-auto">

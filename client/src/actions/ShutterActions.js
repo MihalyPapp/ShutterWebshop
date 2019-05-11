@@ -2,16 +2,16 @@ import ShutterConstants from '../constants/ShutterConstants';
 import ShutterWebshopDispatcher from '../dispatcher/ShutterWebshopDispatcher';
 
 class ShutterActions {
-    fetchShutters() {
+    fetchShuttersDetails() {
         ShutterWebshopDispatcher.handleViewAction({
-            actionType: ShutterConstants.FETCH_SHUTTERS,
+            actionType: ShutterConstants.FETCH_SHUTTERS_DETAILS,
             payload: null
         });
     }
 
-    fetchSelectedShutter(_id) {
+    fetchShutter(_id) {
         ShutterWebshopDispatcher.handleViewAction({
-            actionType: ShutterConstants.FETCH_SELECTED_SHUTTER,
+            actionType: ShutterConstants.FETCH_SHUTTER,
             payload: _id
         });
     }

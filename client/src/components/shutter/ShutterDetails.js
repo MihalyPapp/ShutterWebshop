@@ -8,10 +8,10 @@ import ShoppingCartStore from '../../store/ShoppingCartStore';
 class ShutterDetails extends React.Component {
     constructor(props) {
         super(props);
-        this._onChange = this._onChange.bind(this);
+        this._onShutterChange = this._onShutterChange.bind(this);
         this._onCartChange = this._onCartChange.bind(this);
         this.state = {
-            selectedShutter: {
+            shutter: {
                 name: "",
                 price: "",
                 partNo: "",
@@ -25,9 +25,9 @@ class ShutterDetails extends React.Component {
         };
     }
 
-    _onChange() {
+    _onShutterChange() {
         this.setState({
-            selectedShutter: ShutterStore._selectedShutter
+            shutter: ShutterStore._shutter
         });
     }
 
@@ -38,18 +38,18 @@ class ShutterDetails extends React.Component {
     }
 
     componentDidMount() {
-        ShutterStore.addChangeListener(this._onChange);
+        ShutterStore.addChangeListener(this._onShutterChange);
         ShoppingCartStore.addChangeListener(this._onCartChange);
     }
 
     componentWillUnmount() {
-        ShutterStore.removeChangeListener(this._onChange);
+        ShutterStore.removeChangeListener(this._onShutterChange);
         ShoppingCartStore.removeChangeListener(this._onCartChange)
     }
 
     onAddBtnClick = () => {
         const cartItem = {
-            shutter: this.state.selectedShutter,
+            shutter: this.state.shutter,
             parameters: {
                 width: this.state.width,
                 height: this.state.height,
@@ -77,7 +77,7 @@ class ShutterDetails extends React.Component {
     };
 
     render() {
-        const imageLink = `http://localhost:8080/images/${this.state.selectedShutter.imgName}.jpg`;
+        const imageLink = `http://localhost:8080/images/${this.state.shutter.imgName}.jpg`;
         return(
             <div className="row top-margin-high">
                 <div className="col-lg-8 col-auto bottom-margin">
@@ -88,10 +88,10 @@ class ShutterDetails extends React.Component {
                                     <img className="card-img-top" src={imageLink} alt="card"/>
                                 </div>
                                 <div className="col-sm-8">
-                                    <h3>{this.state.selectedShutter.name}</h3>
-                                    <p className="blockquote-footer text-right">Part number: {this.state.selectedShutter.partNo}</p>
+                                    <h3>{this.state.shutter.name}</h3>
+                                    <p className="blockquote-footer text-right">Part number: {this.state.shutter.partNo}</p>
                                     <h6 className="align-text-bottom text-danger">
-                                        <label>Price: <strong>{this.state.selectedShutter.price} HUF</strong></label> / sqm
+                                        <label>Price: <strong>{this.state.shutter.price} HUF</strong></label> / sqm
                                     </h6>
                                 </div>
                             </div>
@@ -133,7 +133,7 @@ class ShutterDetails extends React.Component {
                                             onChange={event => this.setState({slat: event.target.value})}
                                             className="custom-select">
                                         <option defaultValue={null} label=""/>
-                                        {this.state.selectedShutter.slats.map(slat => {
+                                        {this.state.shutter.slats.map(slat => {
                                             return <option key={slat} value={slat}>{slat}</option>
                                         })}
                                     </select>

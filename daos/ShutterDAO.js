@@ -7,7 +7,7 @@ const url = 'mongodb://172.21.0.10:27017';
 
 class ShutterDAO {
 
-    findShutters(callback) {
+    findShuttersDetails(callback) {
         const client = MongoClient(url);
         client.connect((err) => {
             if(err != null) {

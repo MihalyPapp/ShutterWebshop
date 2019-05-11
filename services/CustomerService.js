@@ -4,7 +4,7 @@ function CustomerService() {
 
 CustomerService.prototype.addOrder = function(order, callback) {
     order['date'] = new Date().toString();
-    order['status']  = 'WAITING_FOR_ASSEMBLE';
+    order['status']  = 'WAITING';
     this.customerDao.insertOrder(order, callback);
 };
 

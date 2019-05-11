@@ -2,26 +2,25 @@ import WorkerConstants from '../constants/WorkerConstants';
 import ShutterWebshopDispatcher from '../dispatcher/ShutterWebshopDispatcher';
 
 class WorkerActions {
-    fetchOrders() {
+    fetchOrdersDetails() {
         ShutterWebshopDispatcher.handleViewAction({
-            actionType: WorkerConstants.FETCH_ORDERS,
+            actionType: WorkerConstants.FETCH_ORDERS_DETAILS_BY_WORKER,
             payload: null
         });
     }
 
     fetchOrderParameters(_id) {
         ShutterWebshopDispatcher.handleViewAction({
-            actionType: WorkerConstants.FETCH_ORDER_PARAMETERS,
+            actionType: WorkerConstants.FETCH_ORDER_PARAMETERS_BY_WORKER,
             payload: _id
         });
     }
 
     updateOrder(data) {
         ShutterWebshopDispatcher.handleViewAction({
-            actionType: WorkerConstants.UPDATE_ORDER,
+            actionType: WorkerConstants.UPDATE_ORDER_BY_WORKER,
             payload: data
         });
-        console.log(data);
     }
 
     setSentStatus(ZeroOrOne) {

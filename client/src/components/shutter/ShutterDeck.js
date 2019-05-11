@@ -6,15 +6,15 @@ import ShutterCard from './ShutterCard';
 class ShutterDeck extends React.Component {
     constructor(props) {
         super(props);
-        ShutterActions.fetchShutters();
+        ShutterActions.fetchShuttersDetails();
         this._onChange = this._onChange.bind(this);
         this.state = {
-            shutters: ShutterStore._shutters
+            shuttersDetails: ShutterStore._shuttersDetails
         };
     }
 
     _onChange() {
-        this.setState({shutters: ShutterStore._shutters});
+        this.setState({shuttersDetails: ShutterStore._shuttersDetails});
     }
 
     componentDidMount() {
@@ -27,7 +27,7 @@ class ShutterDeck extends React.Component {
 
     renderCard() {
         return (
-            this.state.shutters.map(shutter => {
+            this.state.shuttersDetails.map(shutter => {
                 return <ShutterCard key={shutter._id} shutter={shutter}/>;
             })
         );

@@ -7,13 +7,13 @@ class ViewOwnOrders extends React.Component {
         super(props);
         this._onChange = this._onChange.bind(this);
         this.state = {
-            userOrders: [],
+            orders: [],
             username: ""
         };
     }
 
     _onChange() {
-        this.setState({userOrders: CustomerStore._ordersByUsername});
+        this.setState({orders: CustomerStore._orders});
     }
 
     componentDidMount() {
@@ -27,10 +27,12 @@ class ViewOwnOrders extends React.Component {
     renderStatus = (status, date) => {
         const installationDate = new Date(date);
         const formattedDate = installationDate.getFullYear()+'-'+installationDate.getMonth()+'-'+installationDate.getDate()+' '+installationDate.getHours()+':'+installationDate.getMinutes();
-        if(status === 'WAITING_FOR_ASSEMBLE')
-            return <h6>Status: Under process.</h6>;
-        else if (status === 'ASSEMBLED')
-            return <h6>Status: Order was processed. Installation at {formattedDate}.</h6>;
+        if(status === 'WAITING')
+            return <h6>Status: The order was sent. Waiting to be processed.</h6>;
+        else if (status === 'ASSEMBLING')
+            return <h6>Status: Under process. Started assembling the shutter(s).</h6>;
+        else if (status === 'DONE')
+            return <h6>Status: The order is complete. Installation at {formattedDate}.</h6>;
     };
 
 
@@ -49,7 +51,7 @@ class ViewOwnOrders extends React.Component {
                     </div>
                     <div className="col-auto">
                         <button
-                            onClick={() => CustomerActions.fetchOrdersByUsername(this.state.username)}
+                            onClick={() => CustomerActions.fetchOrders(this.state.username)}
                             className="btn btn-success float-none">Fetch orders
                         </button>
                     </div>
@@ -63,7 +65,7 @@ class ViewOwnOrders extends React.Component {
                             </div>
                             <div className="card-body">
                                 <ul className="list-group list-group-flush">
-                                    {this.state.userOrders.map(order => {
+                                    {this.state.orders.map(order => {
                                         return(
                                             <li key={order._id} className="list-group-item list-group-item-action">
                                                 <div className="row">

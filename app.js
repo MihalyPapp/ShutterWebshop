@@ -7,6 +7,7 @@ const indexRouter = require('./routes/index');
 const shutterRouter = require('./routes/shutters');
 const customerRouter = require('./routes/customer');
 const workerRouter = require('./routes/worker');
+const managerRouter = require('./routes/manager');
 
 const app = express();
 
@@ -20,5 +21,6 @@ app.use('/', indexRouter);
 app.use('/shutters', shutterRouter);
 app.use('/customer', customerRouter);
 app.use('/worker', workerRouter);
+app.use('/manager', managerRouter);
 
 module.exports = app;

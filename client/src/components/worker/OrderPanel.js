@@ -6,16 +6,16 @@ import WorkerStore from '../../store/WorkerStore'
 class OrderPanel extends React.Component {
     constructor(props) {
         super(props);
-        WorkerActions.fetchOrders();
+        WorkerActions.fetchOrdersDetails();
         this._onChange = this._onChange.bind(this);
         this.state = {
-            orders: WorkerStore._orders,
+            ordersDetails: WorkerStore._ordersDetails,
             username: ""
         };
     }
 
     _onChange() {
-        this.setState({orders: WorkerStore._orders,});
+        this.setState({ordersDetails: WorkerStore._ordersDetails,});
     }
 
     componentDidMount() {
@@ -33,7 +33,7 @@ class OrderPanel extends React.Component {
                 <div className="card-header">Orders what's waiting for assemble</div>
                 <div className="card-body">
                     <ul className="list-group">
-                        {this.state.orders.map(order => {
+                        {this.state.ordersDetails.map(order => {
                             return(
                                 <li onClick={() => {WorkerActions.fetchOrderParameters(order._id); WorkerActions.setSentStatus(0)}}
                                     className="list-group-item list-group-item-action pointer"

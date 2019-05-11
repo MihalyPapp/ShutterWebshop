@@ -8,8 +8,8 @@ router.get('/list/:_id', (req, res) => {
     });
 });
 
-router.get('/list', (req, res) => {
-    shutterService.listShutters(shutters => {
+router.get('/details/list', (req, res) => {
+    shutterService.listShuttersDetails(shutters => {
         res.status(200).send(shutters);
     });
 });

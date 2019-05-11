@@ -2,8 +2,8 @@ import {EventEmitter} from 'events';
 
 class ShutterStore extends EventEmitter {
 
-    _shutters = [];
-    _selectedShutter = null;
+    _shuttersDetails = [];
+    _shutter = {};
 
     emitChange() {
         this.emit('change');

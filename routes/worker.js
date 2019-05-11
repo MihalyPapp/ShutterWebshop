@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const workerService = require('../services/WorkerService');
 
-router.get('/orders/list', (req, res) => {
+router.get('/orders/details/list', (req, res) => {
     workerService.listOrders(response => {
         res.status(200).send(response);
     });

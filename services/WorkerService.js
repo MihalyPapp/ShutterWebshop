@@ -3,7 +3,7 @@ function WorkerService() {
 }
 
 WorkerService.prototype.listOrders = function(callback) {
-    this.workerDAO.findOrder(callback);
+    this.workerDAO.findOrders(callback);
 };
 
 WorkerService.prototype.listOrderParameters = function(_id, callback) {
@@ -27,7 +27,7 @@ WorkerService.prototype.listOrderParameters = function(_id, callback) {
 };
 
 WorkerService.prototype.updateOrder = function(data, callback) {
-    data['status'] = 'ASSEMBLED';
+    data['status'] = 'ASSEMBLING';
     this.workerDAO.updateOrder(data, callback);
 };
 

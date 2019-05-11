@@ -9,9 +9,9 @@ class CustomerActions {
         });
     }
 
-    fetchOrdersByUsername(username) {
+    fetchOrders(username) {
         ShutterWebshopDispatcher.handleViewAction({
-            actionType: CustomerConstants.FETCH_ORDERS_BY_USERNAME,
+            actionType: CustomerConstants.FETCH_ORDERS_BY_CUSTOMER,
             payload: username
         })
     }

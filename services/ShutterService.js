@@ -2,8 +2,8 @@ function ShutterService() {
     this.shutterDAO = require('../daos/ShutterDAO');
 }
 
-ShutterService.prototype.listShutters = function(callback) {
-    this.shutterDAO.findShutters(callback);
+ShutterService.prototype.listShuttersDetails = function(callback) {
+    this.shutterDAO.findShuttersDetails(callback);
 };
 
 ShutterService.prototype.listShuttersById = function(_id, callback) {

@@ -3,7 +3,7 @@ import {EventEmitter} from 'events';
 class CustomerStore extends EventEmitter {
 
     _sentOrderResponse = {};
-    _ordersByUsername = [];
+    _orders = [];
 
     emitChange() {
         this.emit('change');
