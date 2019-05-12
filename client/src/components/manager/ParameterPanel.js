@@ -3,7 +3,6 @@ import {PDFDownloadLink} from '@react-pdf/renderer';
 
 import InvoiceDoc from './InvoiceDoc';
 import ManagerStore from '../../store/ManagerStore'
-//import ManagerActions from '../../actions/ManagerActions';
 
 class ParameterPanel extends React.Component {
     constructor(props) {
@@ -27,11 +26,6 @@ class ParameterPanel extends React.Component {
     componentWillUnmount() {
         ManagerStore.removeChangeListener(this._onChange);
     }
-
-    onBtnClick = () => {
-        //ManagerStore.updateOrder({_id: this.state.selectedOrderId, workerUsername: this.state.workerUsername})
-        console.log("click")
-    };
 
     formatDate(date) {
         const installationDate = new Date(date);
