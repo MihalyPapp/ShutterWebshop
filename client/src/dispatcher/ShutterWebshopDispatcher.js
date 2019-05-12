@@ -203,7 +203,7 @@ dispatcher.register((data) => {
     ReactDOM.unmountComponentAtNode(document.getElementById('workerContentPanel'));
 });
 
-dispatcher.register((data) => { ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+dispatcher.register((data) => {
    if(data.payload.actionType !== WorkerConstants.SET_SENT_STATUS) {
        return;
    }
