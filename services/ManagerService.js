@@ -16,4 +16,4 @@ ManagerService.prototype.getSlatsStatistics = function(callback) {
 
 
 
-module.exports = new ManagerService();
+module.exports = ManagerService;

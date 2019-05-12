@@ -31,4 +31,4 @@ WorkerService.prototype.updateOrder = function(data, callback) {
     this.workerDAO.updateOrder(data, callback);
 };
 
-module.exports = new WorkerService();
+module.exports = WorkerService;

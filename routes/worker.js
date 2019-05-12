@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const workerService = require('../services/WorkerService');
+const WorkerService = require('../services/WorkerService');
+const workerService = new WorkerService();
 
 router.get('/orders/details/list', (req, res) => {
     workerService.listOrders(response => {

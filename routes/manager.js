@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const managerService = require('../services/ManagerService');
+const ManagerService = require('../services/ManagerService');
+const managerService = new ManagerService();
 
 router.get('/orders/details/list', (req, res) => {
     managerService.listOrdersDetails(response => {
