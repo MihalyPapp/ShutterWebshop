@@ -31,7 +31,10 @@ docker run --detach --network $MONGO_NETWORK_NAME --ip $MONGO_HOST_IP mongo
 # chmod +r *.json
 
 mongoimport --host $MONGO_HOST_IP --db shutter-webshop --collection shutters shutters.json
-# mongoimport --host $MONGO_HOST_IP --db sakila --collection customers customers.json
+mongoimport --host $MONGO_HOST_IP --db shutter-webshop --collection orders orders.json
 # mongoimport --host $MONGO_HOST_IP --db sakila --collection stores stores.json
 
 mongo --host $MONGO_HOST_IP
+
+# mongoexport --host 172.21.0.10 --db shutter-webshop --collection orders --forceTableScan --out orders
+

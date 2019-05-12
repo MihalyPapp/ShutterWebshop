@@ -40,6 +40,7 @@ class CustomerDAO {
 
             orders.find({[_username]: username}).toArray((err, docs) => {
                 assert.equal(err, null);
+                console.log(docs)
                 callback(docs);
             })
         });

@@ -25,7 +25,7 @@ class CreateOrder extends React.Component {
             zip: "",
             installationDate: new Date(),
             orderSent: 0, //1 or 0
-            sentOrderResponse: CustomerStore._sentOrderResponse
+            sentOrderResponse: {}
         };
     }
 

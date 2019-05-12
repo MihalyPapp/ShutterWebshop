@@ -67,11 +67,11 @@ class ManagerDAO {
             let butter = 0;
             let coffee = 0;
 
-            const promise1 = orders.find({[status]: 'ASSEMBLED', 'cartItems.parameters.slat': 'hazelnut'}).count().then(result => {hazelnut = result});
-            const promise2 = orders.find({[status]: 'ASSEMBLED', 'cartItems.parameters.slat': 'wooden'}).count().then(result => {wooden = result});
-            const promise3 = orders.find({[status]: 'ASSEMBLED', 'cartItems.parameters.slat': 'grey'}).count().then(result => {grey = result});
-            const promise4 = orders.find({[status]: 'ASSEMBLED', 'cartItems.parameters.slat': 'butter'}).count().then(result => {butter = result});
-            const promise5 = orders.find({[status]: 'ASSEMBLED', 'cartItems.parameters.slat': 'coffee'}).count().then(result => {coffee = result});
+            const promise1 = orders.find({'cartItems.parameters.slat': 'hazelnut'}).count().then(result => {hazelnut = result});
+            const promise2 = orders.find({'cartItems.parameters.slat': 'wooden'}).count().then(result => {wooden = result});
+            const promise3 = orders.find({'cartItems.parameters.slat': 'grey'}).count().then(result => {grey = result});
+            const promise4 = orders.find({'cartItems.parameters.slat': 'butter'}).count().then(result => {butter = result});
+            const promise5 = orders.find({'cartItems.parameters.slat': 'coffee'}).count().then(result => {coffee = result});
 
             Promise.all([promise1, promise2, promise3, promise4, promise5]).then(() => {
                 callback([
